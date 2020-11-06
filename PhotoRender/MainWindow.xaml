@@ -7,16 +7,16 @@
         mc:Ignorable="d"
         Title="Astrid Photo Render" Height="600" Width="1000">
     <Grid ShowGridLines="True">
-        <Grid Margin="0,0,0,525">
+        <Grid x:Name="nav" Margin="0,0,0,525">
             <Menu Background="#F9D7FF" VerticalAlignment="Stretch" Margin="0,0,-0.4,-0.6">
                 <MenuItem x:Name="importImage" Header="Открыть " Height="30" Width="60"></MenuItem>
                 <MenuItem x:Name="filterImage" Header="Фильтр" Height="30" Width="60" ></MenuItem>
                 <MenuItem x:Name="saveImage" Header="Сохранить как" Height="30" Width="100"/>
             </Menu>
         </Grid>
-        <Grid Margin="0,30,-0.4,0.4" >
-            <Grid x:Name="originalImage" HorizontalAlignment="Right" Background="Aqua" Width="500px"></Grid>
-            <Grid x:Name="filteredImage" HorizontalAlignment="Left" Background="Gray" Width="500 px"></Grid>
+        <Grid x:Name="gridImage" Margin="0,30,-0.4,0.4" >
+            <Grid x:Name="originalImage" HorizontalAlignment="Right" Background="Aqua" Width="496"></Grid>
+            <Grid x:Name="filteredImage" HorizontalAlignment="Left" Background="Gray" Width="496 px"></Grid>
             
         </Grid>
     </Grid>
