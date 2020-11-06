@@ -23,6 +23,7 @@ namespace PhotoRender
         public MainWindow()
         {
             InitializeComponent();
+            Console.WriteLine("");
         }
     }
 }

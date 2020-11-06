@@ -13,5 +13,6 @@ namespace PhotoRender
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }
