@@ -22,6 +22,7 @@ namespace PhotoRender
     {
         public MainWindow()
         {
+            Console.WriteLine("пишет Леха");
             InitializeComponent();
             Console.WriteLine("");
         }

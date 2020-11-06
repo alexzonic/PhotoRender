@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PhotoRender"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid RenderTransformOrigin="0.448,0.502">
         
+
     </Grid>
 </Window>
