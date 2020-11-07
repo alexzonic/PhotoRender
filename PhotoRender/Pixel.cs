@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Runtime.InteropServices;
+using System.Windows.Media;
 
 namespace PhotoRender
 {
@@ -18,10 +19,10 @@ namespace PhotoRender
             B = color.B;
         }
 
-        public byte R { get; }
-        public byte G { get; }
-        public byte B { get; }
-
+        public byte R { get; set; }
+        public byte G { get; set; }
+        public byte B { get; set; }
+        
         public double GetShadeOfGray()
         {
             return (0.299 * R + 0.587 * G + 0.114 * B) / 255;

@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace PhotoRender
 {
-    class Convert
+    public static class Convert
     {
         private const int ResizeRate = 2;
 

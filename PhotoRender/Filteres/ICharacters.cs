@@ -1,11 +1,43 @@
-﻿namespace PhotoRender.Filteres
+﻿/*namespace PhotoRender.Filteres
 {
-    interface ICharacters
+    public struct Colours
     {
-        int Red { get; set; }
-        int Green { get; set; }
-        int Blue { get; set; }
-        uint Point { get; set; }
-        double Percent { get; set; }
+        public int Red
+        {
+            get => Red;
+            set
+            {
+                if (value < 0)
+                    Red = 0;
+                else if (value > 255)
+                    Red = 255;
+                else Red = value;
+            }
+        }
+        private int Green
+        {
+            get => Green;
+            set
+            {
+                if (value < 0)
+                    Green = 0;
+                else if (value > 255)
+                    Green = 255;
+                else Green = value;
+            }
+        }
+        private int Blue
+        {
+            get => Blue;
+            set
+            {
+                if (value < 0)
+                    Blue = 0;
+                else if (value > 255)
+                    Blue = 255;
+                else Blue = value;
+            }
+        }
     }
 }
+*/
