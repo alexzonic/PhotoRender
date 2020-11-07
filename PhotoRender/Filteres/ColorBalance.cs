@@ -42,7 +42,7 @@
 
         public uint BalanceRed(uint point, int position)
         {
-            Red = (int)(((point & 0x00FF0000) >> 16) + position * 128 / 100));
+            Red = (int)(((point & 0x00FF0000) >> 16) + position * 128 / 100);
             Green = (int)((point & 0x0000FF00) >> 8);
             Blue = (int)(point & 0x000000FF);
 

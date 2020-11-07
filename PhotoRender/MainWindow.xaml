@@ -28,7 +28,7 @@
                 <ColumnDefinition Width="5px"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Image x:Name="originalImage" Grid.Column="0"></Image>
+            <Image x:Name="originalImage" Grid.Column="0" ></Image>
             <Image x:Name="filteredImage" Grid.Column="2" ></Image>
             <TextBox HorizontalAlignment="Left" Height="23" Margin="0,510,0,0" TextWrapping="Wrap" Text="BY Kruglov Trofimov Tyganov" VerticalAlignment="Top" Width="216" RenderTransformOrigin="-2.387,0.774" FontFamily="Trebuchet MS" FontStyle="Italic" SelectionOpacity="0.9" Opacity="0.3" FontSize="16" BorderBrush="#00ABADB3" >
                 <TextBox.Effect>
