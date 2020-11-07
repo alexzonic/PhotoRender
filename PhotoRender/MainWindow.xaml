@@ -6,18 +6,40 @@
         xmlns:local="clr-namespace:PhotoRender"
         mc:Ignorable="d"
         Title="Astrid Photo Render" Height="600" Width="1000">
+
     <Grid ShowGridLines="True">
-        <Grid x:Name="nav" Margin="0,0,0,525">
-            <Menu Background="#F9D7FF" VerticalAlignment="Stretch" Margin="0,0,-0.4,-0.6">
-                <MenuItem x:Name="importImage" Header="Открыть " Height="30" Width="60"></MenuItem>
-                <MenuItem x:Name="filterImage" Header="Фильтр" Height="30" Width="60" ></MenuItem>
-                <MenuItem x:Name="saveImage" Header="Сохранить как" Height="30" Width="100"/>
-            </Menu>
-        </Grid>
-        <Grid x:Name="gridImage" Margin="0,30,-0.4,0.4" >
-            <Grid x:Name="originalImage" HorizontalAlignment="Right" Background="Aqua" Width="496"></Grid>
-            <Grid x:Name="filteredImage" HorizontalAlignment="Left" Background="Gray" Width="496 px"></Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Background="#F9D7FF">
+            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Открыть" MinWidth="60" MinHeight="30" Margin="-7, 0, -6,0" Cursor="Hand" Click="loadImage_Click" />
+            <MenuItem Header="Фильтр" MinHeight="30" MinWidth="60" Cursor="Hand">
+                <Button Content="Button1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"></Button>
+                <Button Content="Button2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"></Button>
+                <Button Content="Button3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"></Button>
+                <Button Content="Button4" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"></Button>
+            </MenuItem>
+            <Button x:Name="saveImage" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Сохранить как" MinHeight="30" MinWidth="100" Margin="-7, 0, -6,0" Cursor="Hand"/>
+        </Menu>
+        <Grid ShowGridLines="True" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5px"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="originalImage" Grid.Column="0"></Image>
+            <Image x:Name="filteredImage" Grid.Column="2" ></Image>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="0,510,0,0" TextWrapping="Wrap" Text="BY Kruglov Trofimov Tyganov" VerticalAlignment="Top" Width="216" RenderTransformOrigin="-2.387,0.774" FontFamily="Trebuchet MS" FontStyle="Italic" SelectionOpacity="0.9" Opacity="0.3" FontSize="16" BorderBrush="#00ABADB3" >
+                <TextBox.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.7"/>
+                </TextBox.Effect>
+                <TextBox.Template>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <ScrollViewer Name="PART_ContentHost"/>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
         </Grid>
     </Grid>
 </Window>
