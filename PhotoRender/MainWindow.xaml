@@ -13,8 +13,8 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Background="#F9D7FF">
-            <Button x:Name="loadImage" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Открыть" MinWidth="60" MinHeight="30" Margin="-7, 0, -6,0" Cursor="Hand" />
-            <MenuItem x:Name="filterImage" Header="Фильтр" MinHeight="30" MinWidth="60" Cursor="Hand">
+            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Открыть" MinWidth="60" MinHeight="30" Margin="-7, 0, -6,0" Cursor="Hand" Click="loadImage_Click" />
+            <MenuItem Header="Фильтр" MinHeight="30" MinWidth="60" Cursor="Hand">
                 <Button Content="Button1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"></Button>
                 <Button Content="Button2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"></Button>
                 <Button Content="Button3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"></Button>
