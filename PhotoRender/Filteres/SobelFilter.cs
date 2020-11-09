@@ -5,21 +5,23 @@ namespace PhotoRender.Filteres
     public static class SobelFilter
     {
         private static int _size;
-        public static double[,] ToSobell(double[,] g, double[,] sx)
+        private static double[,] _sx = new double[,] {{-1, -2, -1}, {0, 0, 0}, {1, 2, 1}};
+
+        public static double[,] ToSobell(double[,] g)
         {
             var width = g.GetLength(0);
             var height = g.GetLength(1);
-            _size = sx.GetUpperBound(0) + 1;
+            _size = _sx.GetUpperBound(0) + 1;
 
             var filteredArray = new double[width, height];
-            var delta = sx.GetUpperBound(0) / 2;
-            var sy = Transpose(sx);
+            var delta = _sx.GetUpperBound(0) / 2;
+            var sy = TransposeSX();
 
             for (var x = delta; x < width - delta; x++)
             {
                 for (var y = delta; y < height - delta; y++)
                 {
-                    var gx = Сonvolution(sx, g, x - delta, y - delta);
+                    var gx = Сonvolution(_sx, g, x - delta, y - delta);
                     var gy = Сonvolution(sy, g, x - delta, y - delta);
                     filteredArray[x, y] = Math.Sqrt(gx * gx + gy * gy);
                 }
@@ -28,13 +30,13 @@ namespace PhotoRender.Filteres
             return filteredArray;
         }
 
-        private static double[,] Transpose(double[,] sx)
+        private static double[,] TransposeSX()
         {
             var result = new double[_size, _size];
             for (var x = 0; x < _size; x++)
             {
                 for (var y = 0; y < _size; y++)
-                    result[x, y] = sx[y, x];
+                    result[x, y] = _sx[y, x];
             }
             return result;
         }

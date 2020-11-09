@@ -5,6 +5,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Drawing;
+using PhotoRender.Filteres;
 
 namespace PhotoRender
 {
@@ -35,29 +36,27 @@ namespace PhotoRender
 
         private void Grayscale_Click(object sender, RoutedEventArgs e)
         {
-            RenderTargetBitmap rtBmp = new RenderTargetBitmap((int)originalImage.ActualWidth, (int)originalImage.ActualHeight, 96.0, 96.0, PixelFormats.Pbgra32);
-
-            originalImage.Measure(new System.Windows.Size((int)originalImage.ActualWidth, (int)originalImage.ActualHeight));
-            originalImage.Arrange(new Rect(new System.Windows.Size((int)originalImage.ActualWidth, (int)originalImage.ActualHeight)));
-
-            rtBmp.Render(originalImage);
-
-            var encoder = new PngBitmapEncoder();
-            encoder.Frames.Add(BitmapFrame.Create(rtBmp));
-
-            MemoryStream stream = new MemoryStream();
-            encoder.Save(stream);
-
-            var pixels = AstridBitmap.LoadPixels(new Bitmap(stream));
+            var pixels = AstridBitmap.LoadPixels(AstridBitmap.ImageToBitmap(originalImage));
 
             var filtredPixels = GrayScale.ToGrayscale(pixels);
 
-            var res = AstridBitmap.ToBitmap(filtredPixels);
+            var bitmap = AstridBitmap.ToBitmap(filtredPixels);
 
-            filteredImage.Source = AstridBitmap.GetBitmapSource(res);
+            filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
         }
 
-        
+        private void SobelFilter_Click(object sender, RoutedEventArgs e)
+        {
+            var pixels = AstridBitmap.LoadPixels(AstridBitmap.ImageToBitmap(originalImage));
+
+            var filtredPixels = GrayScale.ToGrayscale(pixels);
+
+            var sobel = SobelFilter.ToSobell(filtredPixels);
+
+            var bitmap = AstridBitmap.ToBitmap(sobel);
+
+            filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
+        }
 
         /*private void saveImage_Click(object sender, RoutedEventArgs e)
         { 
@@ -86,7 +85,7 @@ namespace PhotoRender
                 }
             }
         }*/
-        
+
     }
 }
 
