@@ -12,17 +12,23 @@ namespace PhotoRender
             B = b;
         }
 
-        public Pixel(Color color)
+        public Pixel(System.Drawing.Color color)
         {
             R = color.R;
             G = color.G;
             B = color.B;
         }
 
+        /*public Pixel(System.Drawing.Color color)
+        {
+            Color = color;
+        }*/
+
         public byte R { get; set; }
         public byte G { get; set; }
         public byte B { get; set; }
-        
+        //public System.Drawing.Color Color { get; }
+
         public double GetShadeOfGray()
         {
             return (0.299 * R + 0.587 * G + 0.114 * B) / 255;
