@@ -1,4 +1,4 @@
-﻿namespace PhotoRender
+﻿namespace PhotoRender.Filteres
 {
     public static class GrayScale
     {
