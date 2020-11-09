@@ -60,7 +60,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Convert.cs" />
+    <Compile Include="AstridBitmap.cs" />
     <Compile Include="Filteres\BRCT.cs" />
     <Compile Include="Filteres\BrightnessContrast.cs" />
     <Compile Include="Filteres\ColorBalance.cs" />

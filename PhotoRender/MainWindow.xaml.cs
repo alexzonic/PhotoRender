@@ -1,18 +1,8 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
 using System.Drawing;
 
@@ -45,38 +35,12 @@ namespace PhotoRender
 
         private void Grayscale_Click(object sender, RoutedEventArgs e)
         {
-            /*var bitmap = new WriteableBitmap(
-                (int)originalImage.ActualWidth,
-                (int)originalImage.ActualHeight,
-                96,
-                96,
-                PixelFormats.Bgr32,
-                null);
-*/
-/*
-            int stride = (bitmap.PixelWidth * bitmap.Format.BitsPerPixel + 7) / 8;
-            byte[] pixels = new byte[bitmap.PixelHeight * stride];
-            bitmap.CopyPixels(pixels, stride, 0);
-*/
-            
+            RenderTargetBitmap rtBmp = new RenderTargetBitmap((int)originalImage.ActualWidth, (int)originalImage.ActualHeight, 96.0, 96.0, PixelFormats.Pbgra32);
 
-            /*byte[] arr;
-            using (var ms = new MemoryStream())
-            {
-                var bmp = originalImage.Source as BitmapImage;
-                JpegBitmapEncoder enc = new JpegBitmapEncoder();
-                enc.Frames.Add(BitmapFrame.Create(bmp));
-                enc.Save(ms);
-                arr = ms.ToArray();
-                ms.Dispose();
-            }*/
-            var img = originalImage;
-            RenderTargetBitmap rtBmp = new RenderTargetBitmap((int)img.ActualWidth, (int)img.ActualHeight, 96.0, 96.0, PixelFormats.Pbgra32);
+            originalImage.Measure(new System.Windows.Size((int)originalImage.ActualWidth, (int)originalImage.ActualHeight));
+            originalImage.Arrange(new Rect(new System.Windows.Size((int)originalImage.ActualWidth, (int)originalImage.ActualHeight)));
 
-            img.Measure(new System.Windows.Size((int)img.ActualWidth, (int)img.ActualHeight));
-            img.Arrange(new Rect(new System.Windows.Size((int)img.ActualWidth, (int)img.ActualHeight)));
-
-            rtBmp.Render(img);
+            rtBmp.Render(originalImage);
 
             var encoder = new PngBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(rtBmp));
@@ -84,46 +48,17 @@ namespace PhotoRender
             MemoryStream stream = new MemoryStream();
             encoder.Save(stream);
 
-            var bitmap = new Bitmap(stream);
+            var pixels = AstridBitmap.LoadPixels(new Bitmap(stream));
 
-            var pixArr = Convert.LoadPixels(bitmap);
+            var filtredPixels = GrayScale.ToGrayscale(pixels);
 
-            var array = GrayScale.ToGrayscale(pixArr);
+            var res = AstridBitmap.ToBitmap(filtredPixels);
 
-            var res = Convert.ToBitmap(array);
-
-            filteredImage.Source = Converting(res);
+            filteredImage.Source = AstridBitmap.GetBitmapSource(res);
         }
 
-        public static BitmapSource Converting(System.Drawing.Bitmap bitmap)
-        {
-            var bitmapData = bitmap.LockBits(
-                new System.Drawing.Rectangle(0, 0, bitmap.Width, bitmap.Height),
-                System.Drawing.Imaging.ImageLockMode.ReadOnly, bitmap.PixelFormat);
-
-            var bitmapSource = BitmapSource.Create(
-                bitmapData.Width, bitmapData.Height,
-                bitmap.HorizontalResolution, bitmap.VerticalResolution,
-                PixelFormats.Bgr24, null,
-                bitmapData.Scan0, bitmapData.Stride * bitmapData.Height, bitmapData.Stride);
-
-            bitmap.UnlockBits(bitmapData);
-            return bitmapSource;
-        }
         
-        // может пригодиится
-        private Bitmap BitmapImage2Bitmap(BitmapImage bitmapImage)
-        {
-            using (var str = new MemoryStream())
-            {
-                var enc = new BmpBitmapEncoder();
-                enc.Frames.Add(BitmapFrame.Create(bitmapImage));
-                enc.Save(str);
-                var bitmap = new Bitmap(str);
 
-                return new Bitmap(bitmap);
-            }
-        }
         /*private void saveImage_Click(object sender, RoutedEventArgs e)
         { 
             if(filteredImage != null)
@@ -154,6 +89,47 @@ namespace PhotoRender
         
     }
 }
+
+
+// может пригодиится
+/*private Bitmap BitmapImage2Bitmap(BitmapImage bitmapImage)
+{
+    using (var str = new MemoryStream())
+    {
+        var enc = new BmpBitmapEncoder();
+        enc.Frames.Add(BitmapFrame.Create(bitmapImage));
+        enc.Save(str);
+        var bitmap = new Bitmap(str);
+
+        return new Bitmap(bitmap);
+    }
+}*/
+
+/*var bitmap = new WriteableBitmap(
+                (int)originalImage.ActualWidth,
+                (int)originalImage.ActualHeight,
+                96,
+                96,
+                PixelFormats.Bgr32,
+                null);
+*/
+/*
+            int stride = (bitmap.PixelWidth * bitmap.Format.BitsPerPixel + 7) / 8;
+            byte[] pixels = new byte[bitmap.PixelHeight * stride];
+            bitmap.CopyPixels(pixels, stride, 0);
+*/
+
+
+/*byte[] arr;
+using (var ms = new MemoryStream())
+{
+    var bmp = originalImage.Source as BitmapImage;
+    JpegBitmapEncoder enc = new JpegBitmapEncoder();
+    enc.Frames.Add(BitmapFrame.Create(bmp));
+    enc.Save(ms);
+    arr = ms.ToArray();
+    ms.Dispose();
+}*/
 
 /*
          // надо затестить p.s. нихуя не работает

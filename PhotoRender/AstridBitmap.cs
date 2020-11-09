@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using Color = System.Drawing.Color;
 
 namespace PhotoRender
 {
-    public static class Convert
+    public static class AstridBitmap
     {
         private const int ResizeRate = 2;
 
@@ -42,10 +45,21 @@ namespace PhotoRender
             });
         }
 
-        /*public static Pixel[,] ToPixels(byte[] array)
+        public static BitmapSource GetBitmapSource(Bitmap bitmap)
         {
+            var bitmapData = bitmap.LockBits(
+                new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+                System.Drawing.Imaging.ImageLockMode.ReadOnly, bitmap.PixelFormat);
 
-        }*/
+            var bitmapSource = BitmapSource.Create(
+                bitmapData.Width, bitmapData.Height,
+                bitmap.HorizontalResolution, bitmap.VerticalResolution,
+                PixelFormats.Bgr32, null, // формат Bgra32 тоже работает исправно
+                bitmapData.Scan0, bitmapData.Stride * bitmapData.Height, bitmapData.Stride);
+
+            bitmap.UnlockBits(bitmapData);
+            return bitmapSource;
+        }
 
         public static Pixel[,] LoadPixels(Bitmap bmp)
         {
