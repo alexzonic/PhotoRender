@@ -74,6 +74,9 @@ namespace PhotoRender
 
         public static Bitmap ImageToBitmap(System.Windows.Controls.Image image)
         {
+            if(image.Source == null) 
+                throw new AstridExceptions.OriginalImageDontExistException("добавьте редактируемую фотографию");
+            
             var rtBmp = new RenderTargetBitmap((int)image.ActualWidth, (int)image.ActualHeight, 96.0, 96.0, PixelFormats.Pbgra32);
 
             image.Measure(new System.Windows.Size((int)image.ActualWidth, (int)image.ActualHeight));

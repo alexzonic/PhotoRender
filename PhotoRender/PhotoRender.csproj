@@ -61,6 +61,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="AstridBitmap.cs" />
+    <Compile Include="AstridExceptions\OriginalImageDontExistException.cs" />
     <Compile Include="Filteres\BRCT.cs" />
     <Compile Include="Filteres\BrightnessContrast.cs" />
     <Compile Include="Filteres\ColorBalance.cs" />

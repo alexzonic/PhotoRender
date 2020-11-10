@@ -36,26 +36,40 @@ namespace PhotoRender
 
         private void Grayscale_Click(object sender, RoutedEventArgs e)
         {
-            var pixels = AstridBitmap.LoadPixels(AstridBitmap.ImageToBitmap(originalImage));
+            try
+            {
+                var pixels = AstridBitmap.LoadPixels(AstridBitmap.ImageToBitmap(originalImage));
 
-            var filtredPixels = GrayScale.ToGrayscale(pixels);
+                var filtredPixels = GrayScale.ToGrayscale(pixels);
 
-            var bitmap = AstridBitmap.ToBitmap(filtredPixels);
+                var bitmap = AstridBitmap.ToBitmap(filtredPixels);
 
-            filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
+                filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
+            }
+            catch (AstridExceptions.OriginalImageDontExistException exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
         }
 
         private void SobelFilter_Click(object sender, RoutedEventArgs e)
         {
-            var pixels = AstridBitmap.LoadPixels(AstridBitmap.ImageToBitmap(originalImage));
+            try
+            {
+                var pixels = AstridBitmap.LoadPixels(AstridBitmap.ImageToBitmap(originalImage));
 
-            var filtredPixels = GrayScale.ToGrayscale(pixels);
+                var filtredPixels = GrayScale.ToGrayscale(pixels);
 
-            var sobel = SobelFilter.ToSobell(filtredPixels);
+                var sobel = SobelFilter.ToSobell(filtredPixels);
 
-            var bitmap = AstridBitmap.ToBitmap(sobel);
+                var bitmap = AstridBitmap.ToBitmap(sobel);
 
-            filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
+                filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
+            }
+            catch (AstridExceptions.OriginalImageDontExistException exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
         }
 
         /*private void saveImage_Click(object sender, RoutedEventArgs e)
