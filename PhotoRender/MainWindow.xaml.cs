@@ -31,6 +31,7 @@ namespace PhotoRender
             if (dlg.ShowDialog() == true)
             {
                 originalImage.Source = new BitmapImage(new Uri(dlg.FileName));
+                filteredImage.Source = null;
             }
         }
 
