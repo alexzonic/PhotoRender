@@ -1,8 +1,26 @@
-﻿namespace PhotoRender.Filteres
+﻿using System.Drawing;
+using Image = System.Windows.Controls.Image;
+
+namespace PhotoRender.Filteres
 {
     public static class GrayScale
     {
-        public static double[,] ToGrayscale(Pixel[,] original)
+	    public static Bitmap ToGrayscale(Image originalImg)
+	    {
+		    var pixels = AstridBitmap.LoadPixels(AstridBitmap.ImageToBitmap(originalImg));
+            
+		    var filtredPixels = Filter(pixels);
+		    
+		    return AstridBitmap.ToBitmap(filtredPixels);
+	    }
+
+	    public static double[,] GetGrayImage(Image originalImg)
+	    {
+		    var pixels = AstridBitmap.LoadPixels(AstridBitmap.ImageToBitmap(originalImg));
+		    return Filter(pixels);
+	    }
+	    
+        private static double[,] Filter(Pixel[,] original)
 		{
 			var width = original.GetLength(0);
 			var height = original.GetLength(1);
