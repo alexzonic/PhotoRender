@@ -73,6 +73,13 @@ namespace PhotoRender
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var filtredPixels = Negativ.NegativFiltred(originalImage);
+
+            filteredImage.Source = AstridBitmap.GetBitmapSource(filtredPixels);
+        }
+
         /*private void saveImage_Click(object sender, RoutedEventArgs e)
         { 
             if(filteredImage != null)

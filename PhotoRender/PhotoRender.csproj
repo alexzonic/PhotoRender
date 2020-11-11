@@ -65,6 +65,7 @@
     <Compile Include="Filteres\BRCT.cs" />
     <Compile Include="Filteres\BrightnessContrast.cs" />
     <Compile Include="Filteres\ColorBalance.cs" />
+    <Compile Include="Filteres\Definition.cs" />
     <Compile Include="Filteres\GrayScale.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
