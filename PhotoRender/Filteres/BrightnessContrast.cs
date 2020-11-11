@@ -2,7 +2,7 @@
 {
     internal sealed class BrightnessContrast : Palette
     {
-        public uint ChangeBrightness(uint point, int position)
+        public static uint ChangeBrightness(uint point, int position)
         {
             Red = (int)(((point & 0x00FF0000) >> 16) + position * 128 / 100);
             Green = (int)(((point & 0x0000FF00) >> 8) + position * 128 / 100);

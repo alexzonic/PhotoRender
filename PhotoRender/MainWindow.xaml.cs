@@ -10,92 +10,109 @@ namespace PhotoRender
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow
-    {
-        
-        public MainWindow()
         {
-            InitializeComponent();
-        }
-
-        private void loadImage_Click(object sender, RoutedEventArgs e)
-        {
-            var dlg = new OpenFileDialog
+            
+            public MainWindow()
             {
-                FileName = "",
-                Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG)|*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG|All files (*.*)|*.*"
-            };
-
-            if (dlg.ShowDialog() == true)
-            {
-                originalImage.Source = new BitmapImage(new Uri(dlg.FileName));
-                filteredImage.Source = null;
+                InitializeComponent();
             }
-        }
 
-        private void Grayscale_Click(object sender, RoutedEventArgs e)
-        {
-            try
+            private void loadImage_Click(object sender, RoutedEventArgs e)
             {
-                var bitmap = GrayScale.ToGrayscale(originalImage);
-
-                filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
-            }
-            catch (AstridExceptions.OriginalImageDontExistException exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-        }
-
-        private void SobelFilter_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var bitmap = SobelFilter.ToSobelFilter(originalImage);
-
-                filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
-            }
-            catch (AstridExceptions.OriginalImageDontExistException exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var filtredPixels = Negativ.NegativFiltred(originalImage);
-
-            filteredImage.Source = AstridBitmap.GetBitmapSource(filtredPixels);
-        }
-
-        /*private void saveImage_Click(object sender, RoutedEventArgs e)
-        { 
-            if(filteredImage != null)
-            {
-               var filteredImageBMP = new BitmapImage();
-                var saveDialog = new SaveFileDialog();
-                saveDialog.Title = "Сохранить картинку как...";
-                //отображать ли предупреждение, если пользователь указывает имя уже существующего файла
-                saveDialog.OverwritePrompt = true;
-                //отображать ли предупреждение, если пользователь указывает несуществующий путь
-                saveDialog.CheckPathExists = true;
-                //список форматов файла, отображаемый в поле "Тип файла"
-                saveDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG)|*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG|All files (*.*)|*.*";
-                if (saveDialog.ShowDialog() == true)
+                var dlg = new OpenFileDialog
                 {
-                    try
-                    {
-                        filteredImage.Save(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Невозможно сохранить изображение", "Ошибка",
-                       MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    FileName = "",
+                    Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG)|*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG|All files (*.*)|*.*"
+                };
+
+                if (dlg.ShowDialog() == true)
+                {
+                    originalImage.Source = new BitmapImage(new Uri(dlg.FileName));
+                    filteredImage.Source = null;
                 }
             }
-        }*/
 
-    }
+            private void Grayscale_Click(object sender, RoutedEventArgs e)
+            {
+                try
+                {
+                    var bitmap = GrayScale.ToGrayscale(originalImage);
+
+                    filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
+                }
+                catch (AstridExceptions.OriginalImageDontExistException exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+            }
+
+            private void SobelFilter_Click(object sender, RoutedEventArgs e)
+            {
+                try
+                {
+                    var bitmap = SobelFilter.ToSobelFilter(originalImage);
+
+                    filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
+                }
+                catch (AstridExceptions.OriginalImageDontExistException exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+            }
+
+            private void Button_Click(object sender, RoutedEventArgs e)
+            {
+                var filtredPixels = Negativ.NegativFiltred(originalImage);
+
+                filteredImage.Source = AstridBitmap.GetBitmapSource(filtredPixels);
+            }
+
+            private void Bright_Click(object sender, RoutedEventArgs e)
+            {
+                filteredImage.Source = originalImage.Source.Clone();
+                //var original = filteredImage.Source;
+                var bitmap = AstridBitmap.ImageToBitmap(originalImage);
+                var a = new BrightSlider(filteredImage, bitmap);
+                a.Show();
+                //a.ShowDialog();
+                /*   
+                if (a.ShowDialog() == true)
+                {
+                    var bitmap = slide.ChangeBright(AstridBitmap.ImageToBitmap(originalImage));
+
+                    filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
+                }*/
+            }
+            
+            /*private void saveImage_Click(object sender, RoutedEventArgs e)
+            { 
+                if(filteredImage != null)
+                {
+                   var filteredImageBMP = new BitmapImage();
+                    var saveDialog = new SaveFileDialog();
+                    saveDialog.Title = "Сохранить картинку как...";
+                    //отображать ли предупреждение, если пользователь указывает имя уже существующего файла
+                    saveDialog.OverwritePrompt = true;
+                    //отображать ли предупреждение, если пользователь указывает несуществующий путь
+                    saveDialog.CheckPathExists = true;
+                    //список форматов файла, отображаемый в поле "Тип файла"
+                    saveDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG)|*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG|All files (*.*)|*.*";
+                    if (saveDialog.ShowDialog() == true)
+                    {
+                        try
+                        {
+                            filteredImage.Save(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Невозможно сохранить изображение", "Ошибка",
+                           MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }*/
+
+        }
 }
 
 

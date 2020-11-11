@@ -2,21 +2,21 @@
 {
     public class Palette
     {
-        private int red;
-        private int green;
-        private int blue;
+        private static  int red;
+        private static  int green;
+        private static int blue;
 
-        public int Red
+        public static int Red
         {
             get => red;
             set => red = GetTrueValue(value);
         }
-        public int Green
+        public static int Green
         {
             get => green;
             set => green = GetTrueValue(value);
         }
-        public int Blue
+        public static int Blue
         {
             get => blue;
             set => blue = GetTrueValue(value);
