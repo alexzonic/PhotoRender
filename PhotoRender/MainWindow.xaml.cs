@@ -1,10 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.IO;
-using System.Drawing;
 using PhotoRender.Filteres;
 
 namespace PhotoRender
@@ -12,7 +9,7 @@ namespace PhotoRender
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         
         public MainWindow()
@@ -39,11 +36,7 @@ namespace PhotoRender
         {
             try
             {
-                var pixels = AstridBitmap.LoadPixels(AstridBitmap.ImageToBitmap(originalImage));
-
-                var filtredPixels = GrayScale.ToGrayscale(pixels);
-
-                var bitmap = AstridBitmap.ToBitmap(filtredPixels);
+                var bitmap = GrayScale.ToGrayscale(originalImage);
 
                 filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
             }
@@ -57,13 +50,7 @@ namespace PhotoRender
         {
             try
             {
-                var pixels = AstridBitmap.LoadPixels(AstridBitmap.ImageToBitmap(originalImage));
-
-                var filtredPixels = GrayScale.ToGrayscale(pixels);
-
-                var sobel = SobelFilter.ToSobell(filtredPixels);
-
-                var bitmap = AstridBitmap.ToBitmap(sobel);
+                var bitmap = SobelFilter.ToSobelFilter(originalImage);
 
                 filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
             }

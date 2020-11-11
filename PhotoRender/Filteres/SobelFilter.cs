@@ -1,13 +1,24 @@
 ﻿using System;
+using System.Drawing;
+using Image = System.Windows.Controls.Image;
 
 namespace PhotoRender.Filteres
 {
     public static class SobelFilter
     {
         private static int _size;
-        private static double[,] _sx = new double[,] {{-1, -2, -1}, {0, 0, 0}, {1, 2, 1}};
+        private static readonly double[,] _sx = new double[,] {{-1, -2, -1}, {0, 0, 0}, {1, 2, 1}};
 
-        public static double[,] ToSobell(double[,] g)
+        public static Bitmap ToSobelFilter(Image originalImg)
+        {
+            var filtredPixels = GrayScale.GetGrayImage(originalImg);
+
+            var sobel = Filter(filtredPixels);
+            
+            return AstridBitmap.ToBitmap(sobel);
+        }
+
+        private static double[,] Filter(double[,] g)
         {
             var width = g.GetLength(0);
             var height = g.GetLength(1);
