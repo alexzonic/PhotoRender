@@ -8,4 +8,11 @@ namespace PhotoRender.AstridExceptions
             : base(message)
         { }
     }
+    
+    public class FilteredlImageDontExistException : Exception
+    {
+        public FilteredlImageDontExistException(string message)
+            : base(message)
+        { }
+    }
 }

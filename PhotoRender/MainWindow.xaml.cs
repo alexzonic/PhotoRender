@@ -1,10 +1,8 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Windows;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.IO;
-using System.Drawing;
+using System.Windows;
+using System.Windows.Media.Imaging;
 using PhotoRender.Filteres;
 
 namespace PhotoRender
@@ -12,7 +10,7 @@ namespace PhotoRender
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         
         public MainWindow()
@@ -39,11 +37,7 @@ namespace PhotoRender
         {
             try
             {
-                var pixels = AstridBitmap.LoadPixels(AstridBitmap.ImageToBitmap(originalImage));
-
-                var filtredPixels = GrayScale.ToGrayscale(pixels);
-
-                var bitmap = AstridBitmap.ToBitmap(filtredPixels);
+                var bitmap = GrayScale.ToGrayscale(originalImage);
 
                 filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
             }
@@ -57,13 +51,7 @@ namespace PhotoRender
         {
             try
             {
-                var pixels = AstridBitmap.LoadPixels(AstridBitmap.ImageToBitmap(originalImage));
-
-                var filtredPixels = GrayScale.ToGrayscale(pixels);
-
-                var sobel = SobelFilter.ToSobell(filtredPixels);
-
-                var bitmap = AstridBitmap.ToBitmap(sobel);
+                var bitmap = SobelFilter.ToSobelFilter(originalImage);
 
                 filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
             }
@@ -80,34 +68,48 @@ namespace PhotoRender
             filteredImage.Source = AstridBitmap.GetBitmapSource(filtredPixels);
         }
 
-        /*private void saveImage_Click(object sender, RoutedEventArgs e)
-        { 
-            if(filteredImage != null)
-            {
-               var filteredImageBMP = new BitmapImage();
-                var saveDialog = new SaveFileDialog();
-                saveDialog.Title = "Сохранить картинку как...";
-                //отображать ли предупреждение, если пользователь указывает имя уже существующего файла
-                saveDialog.OverwritePrompt = true;
-                //отображать ли предупреждение, если пользователь указывает несуществующий путь
-                saveDialog.CheckPathExists = true;
-                //список форматов файла, отображаемый в поле "Тип файла"
-                saveDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG)|*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG|All files (*.*)|*.*";
-                if (saveDialog.ShowDialog() == true)
-                {
-                    try
-                    {
-                        filteredImage.Save(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Невозможно сохранить изображение", "Ошибка",
-                       MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-        }*/
+        private void saveImage_Click(object sender, RoutedEventArgs e)
+        {
 
+            var saveDialog = new SaveFileDialog();
+            saveDialog.Title = "Сохранить картинку как...";
+            //отображать ли предупреждение, если пользователь указывает имя уже существующего файла
+            saveDialog.OverwritePrompt = true;
+            //отображать ли предупреждение, если пользователь указывает несуществующий путь
+            saveDialog.CheckPathExists = true;
+            //список форматов файла, отображаемый в поле "Тип файла"
+            saveDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG)|*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG|All files (*.*)|*.*";
+            saveDialog.InitialDirectory = @"c:\temp\"; //каталог по умолчанию
+            if (saveDialog.ShowDialog() == true)
+            {
+                var jpegBitmapEncoder = new JpegBitmapEncoder();
+                jpegBitmapEncoder.Frames.Add(BitmapFrame.Create(filteredImage.Source as BitmapSource));
+                //jpegBitmapEncoder.Save(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg); //saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                using (FileStream stream = new FileStream(saveDialog.FileName, FileMode.Create))
+                    jpegBitmapEncoder.Save(stream);              
+            }
+            
+            
+            
+    //         if(filteredImage != null)
+    //         {
+    //            var filteredImageBMP = new BitmapImage();
+    //            
+    //            
+    //             if (saveDialog.ShowDialog() == true)
+    //             {
+    //                 try
+    //                 {
+    //                     filteredImageBMP.Save(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+    //                 }
+    //                 catch
+    //                 {
+    //                     MessageBox.Show("Невозможно сохранить изображение", "Ошибка",
+    //                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+    //                 }
+    //             }
+    //         }
+        }
     }
 }
 
