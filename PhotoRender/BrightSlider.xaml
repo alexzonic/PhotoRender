@@ -5,32 +5,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:PhotoRender"
         mc:Ignorable="d"
-        Title="slide" Height="100" Width="250" WindowStyle="None" WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        <Style TargetType="{x:Type Button}" x:Key="ImageButtonStyle">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <ContentPresenter/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
-    <Grid>
-        <Slider Name="myslider" 
-                Margin="10,34,10.2,29.6" 
-                Value="0" 
-                Minimum="-10" 
-                Maximum="10" 
-                TickFrequency="1" 
-                IsSnapToTickEnabled="True" 
-                SelectionStart="0" Height="30" 
-                IsSelectionRangeEnabled="True" 
-                ValueChanged="Slider_ValueChanger">
-        </Slider>
-        <Button x:Name="saveChanges" Content="Применить" HorizontalAlignment="Left" Height="20" Margin="81,64,0,0" VerticalAlignment="Top" Width="80"/>
-        <Image Source="Recoursers/cancel-button.png" Margin="213,0,0.2,64.6" MouseDown="Image_MouseDown" Cursor="Hand"/>
-        <TextBlock HorizontalAlignment="Left" Height="14" Margin="10,20,0,0" TextWrapping="Wrap" Text="Яркость" VerticalAlignment="Top" Width="57"/>
-    </Grid>
+        Title="slide" Height="100" Width="250">
+        <Grid>
+            <Slider Name="myslider" Margin="10" Value="0" Minimum="-10" Maximum="10" TickFrequency="1" 
+                    IsSnapToTickEnabled="True" SelectionStart="0" Height="30" 
+                    IsSelectionRangeEnabled="True" ValueChanged="Slider_ValueChanger"/>
+       </Grid>
 </Window>
