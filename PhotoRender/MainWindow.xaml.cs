@@ -69,19 +69,16 @@ namespace PhotoRender
 
             private void Bright_Click(object sender, RoutedEventArgs e)
             {
-                filteredImage.Source = originalImage.Source.Clone();
-                //var original = filteredImage.Source;
-                var bitmap = AstridBitmap.ImageToBitmap(originalImage);
-                var a = new BrightSlider(filteredImage, bitmap);
-                a.Show();
-                //a.ShowDialog();
-                /*   
-                if (a.ShowDialog() == true)
+                try
                 {
-                    var bitmap = slide.ChangeBright(AstridBitmap.ImageToBitmap(originalImage));
-
-                    filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
-                }*/
+                    var bitmap = AstridBitmap.ImageToBitmap(originalImage);
+                    var a = new BrightSlider(filteredImage, bitmap);
+                    a.Show();
+                }
+                catch (AstridExceptions.OriginalImageDontExistException exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
             }
             
             /*private void saveImage_Click(object sender, RoutedEventArgs e)
