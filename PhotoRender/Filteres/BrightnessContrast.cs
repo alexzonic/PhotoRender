@@ -1,9 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Controls;
-using System.Windows.Media;
-using Color = System.Drawing.Color;
-using Image = System.Windows.Controls.Image;
+﻿using System.Windows.Controls;
 
 namespace PhotoRender.Filteres
 {

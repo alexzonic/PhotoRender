@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:PhotoRender"
         mc:Ignorable="d"
-        Title="BalanceSlider" Height="270" Width="350">
+        Height="270" Width="350" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
         <Window.Resources>
                 <Style TargetType="Slider" x:Key="sliderBalance">
                         <Setter Property="Value" Value="0"/>

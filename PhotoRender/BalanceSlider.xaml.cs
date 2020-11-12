@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using PhotoRender.Filteres;
+using System.Windows.Input;
 using static PhotoRender.Filteres.ColorBalance;
 
 namespace PhotoRender
@@ -28,6 +28,12 @@ namespace PhotoRender
         {
             ((Slider)sender).SelectionEnd = e.NewValue;
             PointBalance(BlueColorSlider, BalanceBlue);
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
     }
 }

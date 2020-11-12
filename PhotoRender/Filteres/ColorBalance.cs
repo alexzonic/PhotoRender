@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Controls;
-using Image = System.Windows.Controls.Image;
 
 namespace PhotoRender.Filteres
 {
