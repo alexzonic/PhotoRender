@@ -52,8 +52,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BrightSlider.xaml.cs">
-      <DependentUpon>BrightSlider.xaml</DependentUpon>
+    <Compile Include="AstridSlider.xaml.cs">
+      <DependentUpon>AstridSlider.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -76,7 +76,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="BrightSlider.xaml" />
+    <Page Include="AstridSlider.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pixel.cs" />

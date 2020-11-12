@@ -95,30 +95,7 @@ namespace PhotoRender
 
             return new Bitmap(stream);
         }
-        
-        public static void ChangeBrightnessForTick(Bitmap originBitmap, System.Windows.Controls.Image origin, Slider slider)
-        {
-            var bitmap = (Bitmap)originBitmap.Clone();
-            var pixels = new uint[bitmap.Height, bitmap.Width];
-            
-            for (var y = 0; y < bitmap.Height; y++)
-            {
-                for (var x = 0; x < bitmap.Width; x++)
-                    pixels[y, x] = (uint) (bitmap.GetPixel(x, y).ToArgb());
-            }
-            
-            for (var y = 0; y < bitmap.Height; y++)
-            {
-                for (var x = 0; x < bitmap.Width; x++)
-                {
-                    var point = BrightnessContrast.ChangeBrightness(pixels[y, x], (int)slider.Value, (int)slider.Maximum);
-                    bitmap.SetPixel(x, y, Color.FromArgb((int)point));
-                }
-            }
-            
-            origin.Source = GetBitmapSource(bitmap);
-        }
-        
+
         public static void SetPixelsInBitmap(uint[,] pixels, Bitmap bitmap)
         {
             for (var y = 0; y < bitmap.Height; y++)
