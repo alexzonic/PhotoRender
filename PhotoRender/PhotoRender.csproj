@@ -114,5 +114,8 @@
   <ItemGroup>
     <Resource Include="Recoursers\x-symbol.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recoursers\minus.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

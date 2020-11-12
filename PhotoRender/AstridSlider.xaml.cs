@@ -43,7 +43,7 @@ namespace PhotoRender
             BrightnessContrast.ChangeContrastForTick(_originBitmap, _originalImg, contrastSlider);
         }
 
-        private void Image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void X_Symbol_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             this.Close();
         }
@@ -52,6 +52,11 @@ namespace PhotoRender
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed)
                 this.DragMove();
+        }
+
+        private void Minus_Symbol_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
         }
     }
 }
