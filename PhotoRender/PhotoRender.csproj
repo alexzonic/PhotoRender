@@ -69,7 +69,6 @@
     <Compile Include="BalanceSlider.xaml.cs">
       <DependentUpon>BalanceSlider.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Filteres\BRCT.cs" />
     <Compile Include="Filteres\BrightnessContrast.cs" />
     <Compile Include="Filteres\ColorBalance.cs" />
     <Compile Include="Filteres\Negativ.cs" />

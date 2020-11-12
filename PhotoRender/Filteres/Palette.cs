@@ -5,18 +5,21 @@
         private static  int red;
         private static  int green;
         private static int blue;
+        
 
-        public static int Red
+        protected static int Red
         {
             get => red;
             set => red = GetTrueValue(value);
         }
-        public static int Green
+
+        protected static int Green
         {
             get => green;
             set => green = GetTrueValue(value);
         }
-        public static int Blue
+
+        protected static int Blue
         {
             get => blue;
             set => blue = GetTrueValue(value);

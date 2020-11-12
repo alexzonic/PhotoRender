@@ -38,7 +38,7 @@ namespace PhotoRender.Filteres
             return 0xFF000000 | ((uint)Red << 16) | ((uint)Green << 8) | ((uint)Blue);
         }
         
-        public static void ChangeBrightnessForTick(Bitmap originBitmap, Image origin, Slider slider)
+        public static void ChangeBrightnessForTick(Bitmap originBitmap, Image origin, Slider slider, uint[,] pixel)
         {
             var bitmap = (Bitmap)originBitmap.Clone();
             var pixels = BitmapPixels(bitmap);
@@ -46,8 +46,8 @@ namespace PhotoRender.Filteres
             
             origin.Source = AstridBitmap.GetBitmapSource(bitmap);
         }
-
-        public static void ChangeContrastForTick(Bitmap originBitmap, Image origin, Slider slider)
+        // статический общий uint[,] пикселей
+        public static void ChangeContrastForTick(Bitmap originBitmap, Image origin, Slider slider, uint[,] pixel)
         {
             var bitmap = (Bitmap)originBitmap.Clone();
             var pixels = BitmapPixels(bitmap);
@@ -56,7 +56,7 @@ namespace PhotoRender.Filteres
             origin.Source = AstridBitmap.GetBitmapSource(bitmap);
         }
 
-        private static uint[,] BitmapPixels(Bitmap bitmap)
+        public static uint[,] BitmapPixels(Bitmap bitmap)
         {
             var pixels = new uint[bitmap.Height, bitmap.Width];
             for (var y = 0; y < bitmap.Height; y++)

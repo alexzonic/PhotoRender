@@ -11,11 +11,12 @@ namespace PhotoRender
     {
         private static Bitmap _originBitmap; 
         private static Image _originalImg;
-
+        private uint[,] pixels;
         public AstridSlider(Image img, Bitmap bimap)
         {
             _originalImg = img;
             _originBitmap = bimap;
+            pixels = BrightnessContrast.BitmapPixels(bimap);
             InitializeComponent();
         }
 
@@ -28,7 +29,7 @@ namespace PhotoRender
                 return;
             }
             contrastSlider.Value = 0;
-            BrightnessContrast.ChangeBrightnessForTick(_originBitmap, _originalImg, brightSlider);
+            BrightnessContrast.ChangeBrightnessForTick(_originBitmap, _originalImg, brightSlider, pixels);
         }
 
         private void Contrast_ValueChanger(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -40,7 +41,7 @@ namespace PhotoRender
                 return;
             }
             brightSlider.Value = 0;
-            BrightnessContrast.ChangeContrastForTick(_originBitmap, _originalImg, contrastSlider);
+            BrightnessContrast.ChangeContrastForTick(_originBitmap, _originalImg, contrastSlider, pixels);
         }
 
         private void X_Symbol_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
