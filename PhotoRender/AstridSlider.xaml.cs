@@ -31,5 +31,10 @@ namespace PhotoRender
             brightSlider.Value = 0;
             BrightnessContrast.ChangeContrastForTick(_originBitmap, _originalImg, contrastSlider);
         }
+
+        private void Image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
