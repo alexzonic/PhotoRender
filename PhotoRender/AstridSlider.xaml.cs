@@ -22,6 +22,11 @@ namespace PhotoRender
         private void Bright_ValueChanger(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             ((Slider)sender).SelectionEnd = e.NewValue;
+            if ((int) e.NewValue == 0)
+            {
+                _originalImg.Source = _originalImg.Source;
+                return;
+            }
             contrastSlider.Value = 0;
             BrightnessContrast.ChangeBrightnessForTick(_originBitmap, _originalImg, brightSlider);
         }
@@ -29,6 +34,11 @@ namespace PhotoRender
         private void Contrast_ValueChanger(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             ((Slider)sender).SelectionEnd = e.NewValue;
+            if ((int) e.NewValue == 0)
+            {
+                _originalImg.Source = _originalImg.Source;
+                return;
+            }
             brightSlider.Value = 0;
             BrightnessContrast.ChangeContrastForTick(_originBitmap, _originalImg, contrastSlider);
         }

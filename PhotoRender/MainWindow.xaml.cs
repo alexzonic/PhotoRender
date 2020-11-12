@@ -3,6 +3,7 @@ using System;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using PhotoRender.Filteres;
+using PhotoRender.AstridExceptions;
 
 namespace PhotoRender
 {
@@ -40,7 +41,7 @@ namespace PhotoRender
 
                     filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
                 }
-                catch (AstridExceptions.OriginalImageDontExistException exception)
+                catch (OriginalImageDontExistException exception)
                 {
                     MessageBox.Show(exception.Message);
                 }
@@ -54,7 +55,7 @@ namespace PhotoRender
 
                     filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
                 }
-                catch (AstridExceptions.OriginalImageDontExistException exception)
+                catch (OriginalImageDontExistException exception)
                 {
                     MessageBox.Show(exception.Message);
                 }
@@ -75,7 +76,7 @@ namespace PhotoRender
                     var slider = new AstridSlider(filteredImage, bitmap);
                     slider.Show();
                 }
-                catch (AstridExceptions.OriginalImageDontExistException exception)
+                catch (OriginalImageDontExistException exception)
                 {
                     MessageBox.Show(exception.Message);
                 }
