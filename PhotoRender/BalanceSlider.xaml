@@ -7,9 +7,18 @@
         mc:Ignorable="d"
         Title="BalanceSlider" Height="450" Width="800">
     <Grid>
-        <Slider ></Slider>
-        <Slider ></Slider>
-        <Slider ></Slider>
+        <Slider Name="RedColorSlider" Margin="10,32,10,111.6" Value="0" Minimum="-10" Maximum="10" TickFrequency="1" 
+                IsSnapToTickEnabled="True" SelectionStart="0" Height="30" 
+                IsSelectionRangeEnabled="True" ValueChanged="RedColorSlider_OnValueChanged"
+        />
+        <Slider Name="GreenColorSlider" Margin="10,32,10,111.6" Value="0" Minimum="-10" Maximum="10" TickFrequency="1" 
+                IsSnapToTickEnabled="True" SelectionStart="0" Height="30" 
+                IsSelectionRangeEnabled="True" ValueChanged="GreenColorSlider_OnValueChanged"
+        />
+        <Slider Name="BlueColorSlider" Margin="10,32,10,111.6" Value="0" Minimum="-10" Maximum="10" TickFrequency="1" 
+                IsSnapToTickEnabled="True" SelectionStart="0" Height="30" 
+                IsSelectionRangeEnabled="True" ValueChanged="BlueColorSlider_OnValueChanged"
+        />
         
     </Grid>
 </Window>
