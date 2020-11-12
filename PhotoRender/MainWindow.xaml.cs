@@ -61,13 +61,18 @@ namespace PhotoRender
                 }
             }
 
-            private void Button_Click(object sender, RoutedEventArgs e)
+            private void Negativ_Click(object sender, RoutedEventArgs e)
             {
-                var filtredPixels = Negativ.NegativFiltred(originalImage);
-
-                filteredImage.Source = AstridBitmap.GetBitmapSource(filtredPixels);
-            }
-
+                try
+                {
+                    var filtredPixels = Negativ.NegativFiltred(originalImage);
+                    filteredImage.Source = AstridBitmap.GetBitmapSource(filtredPixels);
+                }
+                catch (AstridExceptions.OriginalImageDontExistException exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+        }
             private void Bright_Click(object sender, RoutedEventArgs e)
             {
                 try
