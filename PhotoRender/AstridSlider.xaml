@@ -14,10 +14,12 @@
         <Slider Name="contrastSlider" Margin="10,106,10,37.6" Value="0" Minimum="-10" Maximum="10" TickFrequency="1"
                     IsSnapToTickEnabled="True" SelectionStart="0" ValueChanged="Contrast_ValueChanger"
                     />
-        <Image Source="Recoursers/x-symbol.png" HorizontalAlignment="Left" Height="22" Margin="312,0,0,0" VerticalAlignment="Top" Width="22" Cursor="Hand" MouseDown="Image_MouseDown" RenderTransformOrigin="-0.01,0.644"/>
+        <Image Source="Recoursers/x-symbol.png" HorizontalAlignment="Left" Height="20" Margin="312,0,0,0" VerticalAlignment="Top" Width="20" Cursor="Hand" MouseDown="X_Symbol_MouseDown"/>
+        <Image Source="Recoursers/minus.png"  HorizontalAlignment="Left" Height="20" Margin="285,0,0,0" VerticalAlignment="Top" Width="20" Cursor="Hand" MouseDown="Minus_Symbol_MouseDown"/>
         <TextBlock HorizontalAlignment="Left" Height="17" Margin="10,10,0,0" TextWrapping="Wrap" Text="Яркость" VerticalAlignment="Top" Width="56"/>
         <TextBlock HorizontalAlignment="Left" Height="17" Margin="10,89,0,0" TextWrapping="Wrap" Text="Контрастность" VerticalAlignment="Top" Width="81"/>
         <Button Content="Применить" HorizontalAlignment="Left" Height="24" Margin="117,62,0,0" VerticalAlignment="Top" Width="110"/>
         <Button Content="Применить" HorizontalAlignment="Left" Height="24" Margin="117,136,0,0" VerticalAlignment="Top" Width="110"/>
+
     </Grid>
 </Window>
