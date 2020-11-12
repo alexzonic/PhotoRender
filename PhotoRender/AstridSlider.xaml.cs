@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using PhotoRender.Filteres;
 using Image = System.Windows.Controls.Image;
 
@@ -35,6 +36,12 @@ namespace PhotoRender
         private void Image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             this.Close();
+        }
+
+        private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+                this.DragMove();
         }
     }
 }

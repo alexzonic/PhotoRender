@@ -5,8 +5,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:PhotoRender"
         mc:Ignorable="d"
-        Height="180" Width="350" WindowStartupLocation="CenterScreen" WindowStyle="None">
-    <Grid>
+        Height="180" Width="350" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
+    <Grid >
         <Slider Name="brightSlider" Margin="10,32,10,111.6" Value="0" Minimum="-10" Maximum="10" TickFrequency="1" 
                     IsSnapToTickEnabled="True" SelectionStart="0" Height="30" 
                     IsSelectionRangeEnabled="True" ValueChanged="Bright_ValueChanger"
