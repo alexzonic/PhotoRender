@@ -72,8 +72,8 @@ namespace PhotoRender
                 try
                 {
                     var bitmap = AstridBitmap.ImageToBitmap(originalImage);
-                    var a = new BrightSlider(filteredImage, bitmap);
-                    a.Show();
+                    var slider = new AstridSlider(filteredImage, bitmap);
+                    slider.Show();
                 }
                 catch (AstridExceptions.OriginalImageDontExistException exception)
                 {
