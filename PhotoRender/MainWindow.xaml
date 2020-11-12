@@ -19,6 +19,7 @@
                 <Button Content="Фильтр Собеля" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="SobelFilter_Click"></Button>
                 <Button Content="Negativ" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Negativ_Click"></Button>
                 <Button Content="Яркость/контрастность" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Bright_Click"></Button>
+                <Button Content="Баланс цветов" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Bright_Click"/>
             </MenuItem>
             <Button x:Name="saveImage" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Сохранить как" MinHeight="30" MinWidth="100" Margin="-7, 0, -6,0" Cursor="Hand" Click="saveImage_Click"></Button>
         </Menu>

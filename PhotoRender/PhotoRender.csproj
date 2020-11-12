@@ -55,6 +55,7 @@
     <Compile Include="AstridSlider.xaml.cs">
       <DependentUpon>AstridSlider.xaml</DependentUpon>
     </Compile>
+    <Page Include="BalanceSlider.xaml" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -65,6 +66,9 @@
     </Compile>
     <Compile Include="AstridBitmap.cs" />
     <Compile Include="AstridExceptions\OriginalImageDontExistException.cs" />
+    <Compile Include="BalanceSlider.xaml.cs">
+      <DependentUpon>BalanceSlider.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Filteres\BRCT.cs" />
     <Compile Include="Filteres\BrightnessContrast.cs" />
     <Compile Include="Filteres\ColorBalance.cs" />
