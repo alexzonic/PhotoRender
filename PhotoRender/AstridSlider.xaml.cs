@@ -6,12 +6,12 @@ using Image = System.Windows.Controls.Image;
 
 namespace PhotoRender
 {
-    public partial class BrightSlider
+    public partial class AstridSlider
     {
-        private readonly Bitmap _originBitmap; 
+        private static Bitmap _originBitmap; 
         private static Image _originalImg;
 
-        public BrightSlider(Image img, Bitmap bimap)
+        public AstridSlider(Image img, Bitmap bimap)
         {
             _originalImg = img;
             _originBitmap = bimap;
@@ -21,12 +21,14 @@ namespace PhotoRender
         private void Bright_ValueChanger(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             ((Slider)sender).SelectionEnd = e.NewValue;
+            contrastSlider.Value = 0;
             BrightnessContrast.ChangeBrightnessForTick(_originBitmap, _originalImg, brightSlider);
         }
 
         private void Contrast_ValueChanger(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             ((Slider)sender).SelectionEnd = e.NewValue;
+            brightSlider.Value = 0;
             BrightnessContrast.ChangeContrastForTick(_originBitmap, _originalImg, contrastSlider);
         }
     }
