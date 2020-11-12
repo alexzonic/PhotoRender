@@ -20,7 +20,7 @@
                 <Button Content="Negativ" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Negativ_Click"></Button>
                 <Button Content="Яркость/контрастность" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Bright_Click"></Button>
             </MenuItem>
-            <Button x:Name="saveImage" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Сохранить как" MinHeight="30" MinWidth="100" Margin="-7, 0, -6,0" Cursor="Hand"/>
+            <Button x:Name="saveImage" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Сохранить как" MinHeight="30" MinWidth="100" Margin="-7, 0, -6,0" Cursor="Hand" Click="saveImage_Click"></Button>
         </Menu>
         <Grid ShowGridLines="True" Grid.Row="1">
             <Grid.ColumnDefinitions>
