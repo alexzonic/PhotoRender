@@ -22,5 +22,10 @@ namespace PhotoRender
             ((Slider)sender).SelectionEnd=e.NewValue;
             AstridBitmap.ChangeBrightnessForTick(_originBitmap, _originalImg, myslider);
         }
+
+        private void Image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

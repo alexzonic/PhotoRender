@@ -68,7 +68,7 @@
     <Compile Include="Filteres\BRCT.cs" />
     <Compile Include="Filteres\BrightnessContrast.cs" />
     <Compile Include="Filteres\ColorBalance.cs" />
-    <Compile Include="Filteres\Definition.cs" />
+    <Compile Include="Filteres\Negativ.cs" />
     <Compile Include="Filteres\GrayScale.cs" />
     <Compile Include="Filteres\Palette.cs" />
     <Compile Include="Filteres\SobelFilter.cs" />
@@ -110,6 +110,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recoursers\cancel-button.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
