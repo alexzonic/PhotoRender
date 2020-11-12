@@ -35,5 +35,15 @@ namespace PhotoRender
             if (Mouse.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
+        
+        private void X_Symbol_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Close();
+        }
+        
+        private void Minus_Symbol_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
     }
 }
