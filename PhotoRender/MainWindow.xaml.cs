@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using PhotoRender.Filteres;
@@ -86,7 +87,29 @@ namespace PhotoRender
                     MessageBox.Show(exception.Message);
                 }
             }
-            
+
+            private void saveImage_Click(object sender, RoutedEventArgs e)
+            {
+
+                var saveDialog = new SaveFileDialog();
+                saveDialog.Title = "Сохранить картинку как...";
+                //отображать ли предупреждение, если пользователь указывает имя уже существующего файла
+                saveDialog.OverwritePrompt = true;
+                //отображать ли предупреждение, если пользователь указывает несуществующий путь
+                saveDialog.CheckPathExists = true;
+                //список форматов файла, отображаемый в поле "Тип файла"
+                saveDialog.Filter =
+                    "Image Files(*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG)|*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG|All files (*.*)|*.*";
+                saveDialog.InitialDirectory = @"c:\temp\"; //каталог по умолчанию
+                if (saveDialog.ShowDialog() == true)
+                {
+                    var jpegBitmapEncoder = new JpegBitmapEncoder();
+                    jpegBitmapEncoder.Frames.Add(BitmapFrame.Create(filteredImage.Source as BitmapSource));
+                    //jpegBitmapEncoder.Save(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg); //saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    using (FileStream stream = new FileStream(saveDialog.FileName, FileMode.Create))
+                        jpegBitmapEncoder.Save(stream);
+                }
+            }
             /*private void saveImage_Click(object sender, RoutedEventArgs e)
             { 
                 if(filteredImage != null)
