@@ -2,9 +2,12 @@
 using System.Drawing;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using PhotoRender.Filteres;
 using Color = System.Drawing.Color;
+using Image = System.Drawing.Image;
 
 namespace PhotoRender
 {
@@ -91,6 +94,15 @@ namespace PhotoRender
             encoder.Save(stream);
 
             return new Bitmap(stream);
+        }
+
+        public static void SetPixelsInBitmap(uint[,] pixels, Bitmap bitmap)
+        {
+            for (var y = 0; y < bitmap.Height; y++)
+            {
+                for (var x = 0; x < bitmap.Width; x++)
+                    bitmap.SetPixel(x, y, Color.FromArgb((int)pixels[y, x]));
+            }
         }
     }
 }

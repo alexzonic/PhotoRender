@@ -15,10 +15,10 @@
         <Menu Grid.Row="0" Background="#F9D7FF">
             <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Открыть" MinWidth="60" MinHeight="30" Margin="-7, 0, -6,0" Cursor="Hand" Click="loadImage_Click" />
             <MenuItem Header="Фильтр" MinHeight="30" MinWidth="60" Cursor="Hand">
-                <Button Content="Grayscale" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Grayscale_Click"></Button>
-                <Button Content="Sobel Filter" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="SobelFilter_Click"></Button>
-                <Button Content="Negativ" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Button_Click"></Button>
-                <Button Content="Button4" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"></Button>
+                <Button Content="Оттенки серого" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Grayscale_Click"></Button>
+                <Button Content="Фильтр Собеля" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="SobelFilter_Click"></Button>
+                <Button Content="Negativ" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Negativ_Click"></Button>
+                <Button Content="Яркость/контрастность" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Bright_Click"></Button>
             </MenuItem>
             <Button x:Name="saveImage" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Сохранить как" MinHeight="30" MinWidth="100" Margin="-7, 0, -6,0" Cursor="Hand" Click="saveImage_Click"></Button>
         </Menu>
