@@ -5,20 +5,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:PhotoRender"
         mc:Ignorable="d"
-        Title="BalanceSlider" Height="450" Width="800">
-    <Grid>
-        <Slider Name="RedColorSlider" Margin="10,32,10,111.6" Value="0" Minimum="-10" Maximum="10" TickFrequency="1" 
-                IsSnapToTickEnabled="True" SelectionStart="0" Height="30" 
-                IsSelectionRangeEnabled="True" ValueChanged="RedColorSlider_OnValueChanged"
-        />
-        <Slider Name="GreenColorSlider" Margin="10,32,10,111.6" Value="0" Minimum="-10" Maximum="10" TickFrequency="1" 
-                IsSnapToTickEnabled="True" SelectionStart="0" Height="30" 
-                IsSelectionRangeEnabled="True" ValueChanged="GreenColorSlider_OnValueChanged"
-        />
-        <Slider Name="BlueColorSlider" Margin="10,32,10,111.6" Value="0" Minimum="-10" Maximum="10" TickFrequency="1" 
-                IsSnapToTickEnabled="True" SelectionStart="0" Height="30" 
-                IsSelectionRangeEnabled="True" ValueChanged="BlueColorSlider_OnValueChanged"
-        />
-        
-    </Grid>
+        Title="BalanceSlider" Height="270" Width="350">
+        <Window.Resources>
+                <Style TargetType="Slider" x:Key="sliderBalance">
+                        <Setter Property="Value" Value="0"/>
+                        <Setter Property="Minimum" Value="-10" />
+                        <Setter Property="TickFrequency" Value="1" />
+                        <Setter Property="IsSnapToTickEnabled" Value="True" />
+                        <Setter Property="Height" Value="30" />
+                        <Setter Property="IsSelectionRangeEnabled" Value="True" />
+                        <Setter Property="SelectionStart" Value="0" />
+                </Style>        
+        </Window.Resources>
+        <Grid>
+                <Slider Style="{StaticResource ResourceKey=sliderBalance}" Name="RedColorSlider" Margin="10,32,10,111.6" 
+                        ValueChanged="RedColorSlider_OnValueChanged"/>
+                <Slider Style="{StaticResource ResourceKey=sliderBalance}" Name="GreenColorSlider" Margin="10,106,10,57.6"
+                        ValueChanged="GreenColorSlider_OnValueChanged"/>
+                <Slider Style="{StaticResource ResourceKey=sliderBalance}" Name="BlueColorSlider" Margin="10,180,10,0"
+                        ValueChanged="BlueColorSlider_OnValueChanged"/>
+        </Grid>        
 </Window>

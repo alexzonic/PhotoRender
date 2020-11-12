@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Controls;
+using System.Windows.Media;
+using Color = System.Drawing.Color;
 using Image = System.Windows.Controls.Image;
 
 namespace PhotoRender.Filteres
@@ -38,45 +40,16 @@ namespace PhotoRender.Filteres
             return 0xFF000000 | ((uint)Red << 16) | ((uint)Green << 8) | ((uint)Blue);
         }
         
-        public static void ChangeBrightnessForTick(Bitmap originBitmap, Image origin, Slider slider, uint[,] pixel)
+        public static void ChangeBrightnessForTick(Slider slider)
         {
-            var bitmap = (Bitmap)originBitmap.Clone();
-            var pixels = BitmapPixels(bitmap);
-            ChangePixelsColor(bitmap, pixels, slider, ChangeBrightness);
-            
-            origin.Source = AstridBitmap.GetBitmapSource(bitmap);
+            ChangePixelsColor(slider, ChangeBrightness);
+            FilteredImage.Source = AstridBitmap.GetBitmapSource(BmpImage);
         }
-        // статический общий uint[,] пикселей
-        public static void ChangeContrastForTick(Bitmap originBitmap, Image origin, Slider slider, uint[,] pixel)
+        
+        public static void ChangeContrastForTick(Slider slider)
         {
-            var bitmap = (Bitmap)originBitmap.Clone();
-            var pixels = BitmapPixels(bitmap);
-            ChangePixelsColor(bitmap, pixels, slider, ChangeContrast);
-            
-            origin.Source = AstridBitmap.GetBitmapSource(bitmap);
-        }
-
-        public static uint[,] BitmapPixels(Bitmap bitmap)
-        {
-            var pixels = new uint[bitmap.Height, bitmap.Width];
-            for (var y = 0; y < bitmap.Height; y++)
-            {
-                for (var x = 0; x < bitmap.Width; x++)
-                    pixels[y, x] = (uint) (bitmap.GetPixel(x, y).ToArgb());
-            }
-            return pixels;
-        }
-
-        private static void ChangePixelsColor(Bitmap bitmap, uint[,] pixels, Slider slider, Func<uint, int, int, uint> change)
-        {
-            for (var y = 0; y < bitmap.Height; y++)
-            {
-                for (var x = 0; x < bitmap.Width; x++)
-                {
-                    var point = change(pixels[y, x], (int) slider.Value, (int) slider.Maximum);
-                    bitmap.SetPixel(x, y, Color.FromArgb((int)point));
-                }
-            }
+            ChangePixelsColor(slider, ChangeContrast);
+            FilteredImage.Source = AstridBitmap.GetBitmapSource(BmpImage);
         }
     }
 }
