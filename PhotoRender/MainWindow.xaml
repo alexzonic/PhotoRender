@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PhotoRender"
         mc:Ignorable="d"
         Title="Astrid Photo Render" Height="600" Width="1000" Icon="Recoursers\Icon.ico">
+    
 
     <Grid ShowGridLines="True">
         <Grid.RowDefinitions>

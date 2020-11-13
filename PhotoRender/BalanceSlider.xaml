@@ -6,27 +6,44 @@
         xmlns:local="clr-namespace:PhotoRender"
         mc:Ignorable="d"
         Height="270" Width="350" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseDown="Window_MouseDown">
-        <Window.Resources>
-                <Style TargetType="Slider" x:Key="sliderBalance">
-                        <Setter Property="Value" Value="0"/>
-                        <Setter Property="Minimum" Value="-10" />
-                        <Setter Property="TickFrequency" Value="1" />
-                        <Setter Property="IsSnapToTickEnabled" Value="True" />
-                        <Setter Property="Height" Value="30" />
-                        <Setter Property="IsSelectionRangeEnabled" Value="True" />
-                        <Setter Property="SelectionStart" Value="0" />
-                </Style>        
-        </Window.Resources>
-        <Grid>
-                <Slider Style="{StaticResource ResourceKey=sliderBalance}" Name="RedColorSlider" Margin="10,32,10,111.6" 
-                        ValueChanged="RedColorSlider_OnValueChanged"/>
-                <Slider Style="{StaticResource ResourceKey=sliderBalance}" Name="GreenColorSlider" Margin="10,106,10,57.6"
-                        ValueChanged="GreenColorSlider_OnValueChanged"/>
-                <Slider Style="{StaticResource ResourceKey=sliderBalance}" Name="BlueColorSlider" Margin="10,180,10,0"
-                        ValueChanged="BlueColorSlider_OnValueChanged"/>
-                
-                <Image Source="Recoursers/x-symbol.png" HorizontalAlignment="Left" Height="20" Margin="312,0,0,0" VerticalAlignment="Top" Width="20" Cursor="Hand" MouseDown="X_Symbol_MouseDown"/>
-                <Image Source="Recoursers/minus.png"  HorizontalAlignment="Left" Height="20" Margin="285,0,0,0" VerticalAlignment="Top" Width="20" Cursor="Hand" MouseDown="Minus_Symbol_MouseDown"/>
+    <Window.Resources>
+        <Style TargetType="Slider" x:Key="sliderBalance">
+            <Setter Property="Value" Value="0"/>
+            <Setter Property="Minimum" Value="-10" />
+            <Setter Property="TickFrequency" Value="1" />
+            <Setter Property="IsSnapToTickEnabled" Value="True" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="IsSelectionRangeEnabled" Value="True" />
+            <Setter Property="SelectionStart" Value="0" />
+        </Style>
+        <Style TargetType="TextBlock" x:Key="SlideText">
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="Height" Value="15"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        
 
-        </Grid>        
+        <Slider Style="{StaticResource ResourceKey=sliderBalance}" Name="RedColorSlider" Margin="10,64,10,170" 
+                        ValueChanged="RedColorSlider_OnValueChanged"/>
+        <Slider Style="{StaticResource ResourceKey=sliderBalance}" Name="GreenColorSlider" Margin="10,131,10,103"
+                        ValueChanged="GreenColorSlider_OnValueChanged"/>
+        <Slider Style="{StaticResource ResourceKey=sliderBalance}" Name="BlueColorSlider" Margin="10,200,10,34"
+                        ValueChanged="BlueColorSlider_OnValueChanged"/>
+
+        <Image Source="Recoursers/x-symbol.png" HorizontalAlignment="Left" Height="20" Margin="312,0,0,0" VerticalAlignment="Top" Width="20" Cursor="Hand" MouseDown="X_Symbol_MouseDown"/>
+        <Image Source="Recoursers/minus.png"  HorizontalAlignment="Left" Height="20" Margin="285,0,0,0" VerticalAlignment="Top" Width="20" Cursor="Hand" MouseDown="Minus_Symbol_MouseDown"/>
+        <TextBlock Style="{StaticResource ResourceKey=SlideText}" Text="Голубой" Width="61" Margin="10,49,273,0"/>
+        <TextBlock Style="{StaticResource ResourceKey=SlideText}" Margin="283,49,4,0" Text="Красный" Width="57"/>
+        <TextBlock Style="{StaticResource ResourceKey=SlideText}" Margin="10,116,266,0" Text="Пурпурный" Width="68"/>
+        <TextBlock Style="{StaticResource ResourceKey=SlideText}" Margin="283,118,12,0" Text="Зеленый" Width="49"/>
+        <TextBlock Style="{StaticResource ResourceKey=SlideText}" Margin="10,187,273,0" Text="Желтый" Width="61"/>
+        <TextBlock Style="{StaticResource ResourceKey=SlideText}" Margin="283,187,14,0" Text="Синий" Width="47"/>
+        <Button Content="Применить" HorizontalAlignment="Left" Height="24" Margin="128,94,0,0" VerticalAlignment="Top" Width="90"/>
+        <Button Content="Применить" HorizontalAlignment="Left" Height="24" Margin="128,161,0,0" VerticalAlignment="Top" Width="90"/>
+        <Button Content="Применить" HorizontalAlignment="Left" Height="24" Margin="128,230,0,0" VerticalAlignment="Top" Width="90"/>
+
+    </Grid>
 </Window>

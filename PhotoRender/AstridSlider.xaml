@@ -33,7 +33,7 @@
         <Image Source="Recoursers/minus.png"  HorizontalAlignment="Left" Height="20" Margin="285,0,0,0" VerticalAlignment="Top" Width="20" Cursor="Hand" MouseDown="Minus_Symbol_MouseDown"/>
         <TextBlock Style="{StaticResource ResourceKey=SlideSave}" Text="Яркость" Width="56" Margin="10,15,278,0"/>
         <TextBlock Style="{StaticResource ResourceKey=SlideSave}" Text="Контрастность" Width="81" Margin="10,89,253,0"/>
-        <Button Style="{StaticResource ResourceKey=SlideButton}" Margin="117,62,0,0" Width="110"/>
+        <Button Style="{StaticResource ResourceKey=SlideButton}"  Margin="117,62,0,0" Width="110"/>
         <Button Style="{StaticResource ResourceKey=SlideButton}" Margin="117,136,0,0" Width="110"/>
 
     </Grid>
