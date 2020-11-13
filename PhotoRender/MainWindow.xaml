@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhotoRender"
         mc:Ignorable="d"
-        Title="Astrid Photo Render" Height="600" Width="1000">
+        Title="Astrid Photo Render" Height="600" Width="1000" Icon="Recoursers\Icon.ico">
 
     <Grid ShowGridLines="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Background="#F9D7FF">
             <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Открыть" MinWidth="60" MinHeight="30" Margin="-7, 0, -6,0" Cursor="Hand" Click="loadImage_Click" />
@@ -19,6 +19,7 @@
                 <Button Content="Фильтр Собеля" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="SobelFilter_Click"></Button>
                 <Button Content="Negativ" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Negativ_Click"></Button>
                 <Button Content="Яркость/контрастность" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Bright_Click"></Button>
+                <Button Content="Sepia" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="35" ></Button>
             </MenuItem>
             <Button x:Name="saveImage" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Сохранить как" MinHeight="30" MinWidth="100" Margin="-7, 0, -6,0" Cursor="Hand" Click="saveImage_Click"></Button>
         </Menu>

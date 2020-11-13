@@ -117,5 +117,11 @@
   <ItemGroup>
     <Resource Include="Recoursers\minus.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recoursers\photo-gallery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recoursers\Icon.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
