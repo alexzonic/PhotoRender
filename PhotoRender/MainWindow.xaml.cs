@@ -1,9 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Drawing;
-using System.IO;
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using PhotoRender.Filteres;
 using PhotoRender.AstridExceptions;
@@ -72,11 +69,11 @@ namespace PhotoRender
                     var filtredPixels = Negativ.NegativFiltred(originalImage);
                     filteredImage.Source = AstridBitmap.GetBitmapSource(filtredPixels);
                 }
-                catch (AstridExceptions.OriginalImageDontExistException exception)
+                catch (OriginalImageDontExistException exception)
                 {
                     MessageBox.Show(exception.Message);
                 }
-        }
+            }
             private void Bright_Click(object sender, RoutedEventArgs e)
             {
                 try
