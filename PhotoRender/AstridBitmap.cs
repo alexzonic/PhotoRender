@@ -93,13 +93,15 @@ namespace PhotoRender
             return new Bitmap(stream);
         }
 
-        public static void SetPixelsInBitmap(uint[,] pixels, Bitmap bitmap)
+        public static Bitmap SetPixelsInBitmap(uint[,] pixels, Bitmap bitmap)
         {
             for (var y = 0; y < bitmap.Height; y++)
             {
                 for (var x = 0; x < bitmap.Width; x++)
                     bitmap.SetPixel(x, y, Color.FromArgb((int)pixels[y, x]));
             }
+
+            return bitmap;
         }
     }
 }

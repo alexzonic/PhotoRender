@@ -6,26 +6,26 @@ namespace PhotoRender.Filteres
 {
     public class Palette
     {
-        private static  int red;
-        private static  int green;
-        private static int blue;
+        private static float red;
+        private static float green;
+        private static float blue;
         public static uint[,] Pixels { get; set; }
         public static Bitmap BmpImage { get; set; }
         public static System.Windows.Controls.Image FilteredImage { get; set; }
 
-        protected static int Red
+        protected static float Red
         {
             get => red;
             set => red = GetTrueValue(value);
         }
 
-        protected static int Green
+        protected static float Green
         {
             get => green;
             set => green = GetTrueValue(value);
         }
 
-        protected static int Blue
+        protected static float Blue
         {
             get => blue;
             set => blue = GetTrueValue(value);
@@ -43,10 +43,10 @@ namespace PhotoRender.Filteres
             }
         }
         
-        private static int GetTrueValue(int color)
+        private static float GetTrueValue(float color)
         {
-            if (color < 0) return 0;
-            if (color > 255) return 255;
+            if (color < 0) return 0.0f;
+            if (color > 255) return 255.0f;
             return color;
         }
         
@@ -60,5 +60,13 @@ namespace PhotoRender.Filteres
             }
             return array;
         }
+
+        protected static (float r, float g, float b) GetColor(uint pixel, double coefficient)
+        {
+            var r = (float)(coefficient * ((pixel & 0x00FF0000) >> 16));
+            var g = (float)(coefficient * ((pixel & 0x0000FF00) >> 8));
+            var b = (float)(coefficient * (pixel & 0x000000FF));
+            return (r, g, b);
+        } 
     }
 }

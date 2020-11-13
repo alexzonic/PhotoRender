@@ -72,7 +72,7 @@
     </Compile>
     <Compile Include="Filteres\BrightnessContrast.cs" />
     <Compile Include="Filteres\ColorBalance.cs" />
-    <Compile Include="Filteres\Negativ.cs" />
+    <Compile Include="Filteres\Sharpness.cs" />
     <Compile Include="Filteres\GrayScale.cs" />
     <Compile Include="Filteres\Palette.cs" />
     <Compile Include="Filteres\SobelFilter.cs" />

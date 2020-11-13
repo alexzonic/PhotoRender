@@ -9,9 +9,9 @@ namespace PhotoRender.Filteres
 	    {
 		    var pixels = AstridBitmap.LoadPixels(AstridBitmap.ImageToBitmap(originalImg));
             
-		    var filtredPixels = Filter(pixels);
+		    var filteredPixels = Filter(pixels);
 		    
-		    return AstridBitmap.ToBitmap(filtredPixels);
+		    return AstridBitmap.ToBitmap(filteredPixels);
 	    }
 
 	    public static double[,] GetGrayImage(Image originalImg)

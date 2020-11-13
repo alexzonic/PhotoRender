@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using PhotoRender.Filteres;
 using PhotoRender.AstridExceptions;
+using static PhotoRender.AstridBitmap;
 using static PhotoRender.Filteres.Palette;
 
 namespace PhotoRender
@@ -40,7 +41,7 @@ namespace PhotoRender
                 {
                     var bitmap = GrayScale.ToGrayscale(originalImage);
 
-                    filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
+                    filteredImage.Source = GetBitmapSource(bitmap);
                 }
                 catch (OriginalImageDontExistException exception)
                 {
@@ -54,7 +55,7 @@ namespace PhotoRender
                 {
                     var bitmap = SobelFilter.ToSobelFilter(originalImage);
 
-                    filteredImage.Source = AstridBitmap.GetBitmapSource(bitmap);
+                    filteredImage.Source = GetBitmapSource(bitmap);
                 }
                 catch (OriginalImageDontExistException exception)
                 {
@@ -66,8 +67,10 @@ namespace PhotoRender
             {
                 try
                 {
-                    var filtredPixels = Negativ.NegativFiltred(originalImage);
-                    filteredImage.Source = AstridBitmap.GetBitmapSource(filtredPixels);
+                    BmpImage = ImageToBitmap(originalImage);
+                    Pixels = BitmapPixels(BmpImage);
+                    FilteredImage = filteredImage;
+                    Sharpness.Filter();
                 }
                 catch (OriginalImageDontExistException exception)
                 {
@@ -78,7 +81,7 @@ namespace PhotoRender
             {
                 try
                 {
-                    BmpImage = AstridBitmap.ImageToBitmap(originalImage);
+                    BmpImage = ImageToBitmap(originalImage);
                     Pixels = BitmapPixels(BmpImage);
                     FilteredImage = filteredImage;
                     var slider = new AstridSlider();
@@ -94,7 +97,7 @@ namespace PhotoRender
             {
                 try
                 {
-                    BmpImage = AstridBitmap.ImageToBitmap(originalImage);
+                    BmpImage = ImageToBitmap(originalImage);
                     Pixels = BitmapPixels(BmpImage);
                     FilteredImage = filteredImage;
                     var slider = new BalanceSlider();
