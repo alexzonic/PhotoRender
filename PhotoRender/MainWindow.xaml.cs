@@ -85,7 +85,22 @@ namespace PhotoRender
                     BmpImage = ImageToBitmap(originalImage);
                     Pixels = BitmapPixels(BmpImage);
                     FilteredImage = filteredImage;
-                    Blur.Filter();
+                    Blur.Filter(); 
+                }
+                catch (OriginalImageDontExistException exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+            }
+            
+            private void Negativity_Click(object sender, RoutedEventArgs e)
+            {
+                try
+                {
+                    BmpImage = ImageToBitmap(originalImage);
+                    Pixels = BitmapPixels(BmpImage);
+                    FilteredImage = filteredImage;
+                    Negativity.Filter();
                 }
                 catch (OriginalImageDontExistException exception)
                 {

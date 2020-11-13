@@ -34,7 +34,7 @@
             return pixels;
         }
 
-        protected static void MatrixConvolution(uint[,] kernelMatrix, int width, int height, double[,] sx)
+        protected static void MatrixConvolution(uint[,] kernelMatrix, int width, int height, double[,] sx, int offset)
         {
             for (var y = 1; y < height + 1; ++y)
             {
@@ -51,9 +51,9 @@
                             blue += b;
                         }
                     }
-                    Red = red;
-                    Green = green;
-                    Blue = blue;
+                    Red = red + offset;
+                    Green = green + offset;
+                    Blue = blue + offset;
                     Pixels[y - 1, x - 1] = PixelColor(Red, Green, Blue);
                 }
             }

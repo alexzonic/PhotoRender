@@ -19,6 +19,7 @@
                 <Button Content="Фильтр Собеля" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="SobelFilter_Click"></Button>
                 <Button Content="Резкость" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Sharpness_Click"></Button>
                 <Button Content="Размытие" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Blur_Click"></Button>
+                <Button Content="Негатив" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Negativity_Click"></Button>
                 <Button Content="Яркость/контрастность" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Bright_Click"></Button>
                 <Button Content="Баланс цветов" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Balance_Click"/>
             </MenuItem>
