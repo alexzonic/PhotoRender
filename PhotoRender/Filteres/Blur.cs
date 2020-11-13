@@ -1,10 +1,9 @@
-﻿namespace PhotoRender.Filteres // только для матриц 3х3
+﻿namespace PhotoRender.Filteres
 {
-    internal class Sharpness : Convolution
+    public class Blur : Convolution
     {
-        private static readonly double[,] _sx = { { -1, -1, -1 }, { -1, 9, -1 }, { -1, -1, -1 } };
-            // { -1, -1, -1 }, { -1, 9, -1 }, { -1, -1, -1 }
-            // {0.111, 0.111, 0.111}, {0.111, 0.111, 0.111}, {0.111, 0.111, 0.111}
+        private static readonly double[,] _sx = { {0.111, 0.111, 0.111}, {0.111, 0.111, 0.111}, {0.111, 0.111, 0.111} };
+
         public static void Filter()
         {
             var width = BmpImage.Width;

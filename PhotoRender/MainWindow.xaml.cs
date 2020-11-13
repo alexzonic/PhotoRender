@@ -63,7 +63,7 @@ namespace PhotoRender
                 }
             }
 
-            private void Negativ_Click(object sender, RoutedEventArgs e)
+            private void Sharpness_Click(object sender, RoutedEventArgs e)
             {
                 try
                 {
@@ -77,6 +77,22 @@ namespace PhotoRender
                     MessageBox.Show(exception.Message);
                 }
             }
+            
+            private void Blur_Click(object sender, RoutedEventArgs e)
+            {
+                try
+                {
+                    BmpImage = ImageToBitmap(originalImage);
+                    Pixels = BitmapPixels(BmpImage);
+                    FilteredImage = filteredImage;
+                    Blur.Filter();
+                }
+                catch (OriginalImageDontExistException exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+            }
+            
             private void Bright_Click(object sender, RoutedEventArgs e)
             {
                 try
