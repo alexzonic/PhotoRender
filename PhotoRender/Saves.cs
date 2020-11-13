@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using PhotoRender.AstridExceptions;
+using static PhotoRender.Filteres.Palette;
 
 namespace PhotoRender
 {
@@ -29,6 +30,12 @@ namespace PhotoRender
                 using (var stream = new FileStream(saveDialog.FileName, FileMode.Create))
                     encoder.Save(stream);
             }
+        }
+
+        public static void SaveChanges(Slider slider)
+        {
+            Pixels = BitmapPixels(BmpImage);
+            slider.Value = 0;
         }
     }
 }

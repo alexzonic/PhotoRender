@@ -41,9 +41,9 @@
         <TextBlock Style="{StaticResource ResourceKey=SlideText}" Margin="283,118,12,0" Text="Зеленый" Width="49"/>
         <TextBlock Style="{StaticResource ResourceKey=SlideText}" Margin="10,187,273,0" Text="Желтый" Width="61"/>
         <TextBlock Style="{StaticResource ResourceKey=SlideText}" Margin="283,187,14,0" Text="Синий" Width="47"/>
-        <Button Content="Применить" HorizontalAlignment="Left" Height="24" Margin="128,94,0,0" VerticalAlignment="Top" Width="90"/>
-        <Button Content="Применить" HorizontalAlignment="Left" Height="24" Margin="128,161,0,0" VerticalAlignment="Top" Width="90"/>
-        <Button Content="Применить" HorizontalAlignment="Left" Height="24" Margin="128,230,0,0" VerticalAlignment="Top" Width="90"/>
+        <Button Content="Применить" HorizontalAlignment="Left" Height="24" Margin="128,94,0,0" VerticalAlignment="Top" Width="90" Click="SaveChanges_Click"/>
+        <Button Content="Применить" HorizontalAlignment="Left" Height="24" Margin="128,161,0,0" VerticalAlignment="Top" Width="90" Click="SaveChanges_Click"/>
+        <Button Content="Применить" HorizontalAlignment="Left" Height="24" Margin="128,230,0,0" VerticalAlignment="Top" Width="90" Click="SaveChanges_Click"/>
 
     </Grid>
 </Window>

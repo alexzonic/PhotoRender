@@ -29,7 +29,17 @@ namespace PhotoRender
             ((Slider)sender).SelectionEnd = e.NewValue;
             PointBalance(BlueColorSlider, BalanceBlue);
         }
-
+        
+        private void SaveChanges_Click(object sender, RoutedEventArgs e)
+        {
+            if ((int)RedColorSlider.Value != 0)
+                Saves.SaveChanges(RedColorSlider);
+            else if ((int)GreenColorSlider.Value != 0)
+                Saves.SaveChanges(GreenColorSlider);
+            else
+                Saves.SaveChanges(BlueColorSlider);
+        }
+        
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed)

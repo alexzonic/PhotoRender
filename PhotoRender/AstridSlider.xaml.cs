@@ -24,20 +24,25 @@ namespace PhotoRender
             BrightnessContrast.ChangeContrastForTick(contrastSlider);
         }
 
-        private void X_Symbol_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Saves.SaveChanges((int) brightSlider.Value != 0 ? brightSlider : contrastSlider);
+        }
+        
+        private void X_Symbol_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Close();
         }
 
-        private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed)
-                this.DragMove();
+               DragMove();
         }
 
         private void Minus_Symbol_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+            WindowState = WindowState.Minimized;
         }
     }
 }
