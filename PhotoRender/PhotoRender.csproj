@@ -55,6 +55,7 @@
     <Compile Include="AstridSlider.xaml.cs">
       <DependentUpon>AstridSlider.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Saves.cs" />
     <Page Include="BalanceSlider.xaml" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -1,7 +1,9 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using PhotoRender.Filteres;
 using PhotoRender.AstridExceptions;
@@ -80,7 +82,7 @@ namespace PhotoRender
                 try
                 {
                     BmpImage = AstridBitmap.ImageToBitmap(originalImage);
-                    PixelsArr = BitmapPixels(BmpImage);
+                    Pixels = BitmapPixels(BmpImage);
                     FilteredImage = filteredImage;
                     var slider = new AstridSlider();
                     slider.Show();
@@ -96,7 +98,7 @@ namespace PhotoRender
                 try
                 {
                     BmpImage = AstridBitmap.ImageToBitmap(originalImage);
-                    PixelsArr = BitmapPixels(BmpImage);
+                    Pixels = BitmapPixels(BmpImage);
                     FilteredImage = filteredImage;
                     var slider = new BalanceSlider();
                     slider.Show();
@@ -107,56 +109,17 @@ namespace PhotoRender
                 }
             }
             
-            private void saveImage_Click(object sender, RoutedEventArgs e)
+            private void SaveImage_Click(object sender, RoutedEventArgs e)
             {
-
-                var saveDialog = new SaveFileDialog();
-                saveDialog.Title = "Сохранить картинку как...";
-                //отображать ли предупреждение, если пользователь указывает имя уже существующего файла
-                saveDialog.OverwritePrompt = true;
-                //отображать ли предупреждение, если пользователь указывает несуществующий путь
-                saveDialog.CheckPathExists = true;
-                //список форматов файла, отображаемый в поле "Тип файла"
-                saveDialog.Filter =
-                    "Image Files(*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG)|*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG|All files (*.*)|*.*";
-                saveDialog.InitialDirectory = @"c:\temp\"; //каталог по умолчанию
-                if (saveDialog.ShowDialog() == true)
+                try
                 {
-                    var jpegBitmapEncoder = new JpegBitmapEncoder();
-                    jpegBitmapEncoder.Frames.Add(BitmapFrame.Create(filteredImage.Source as BitmapSource));
-                    //jpegBitmapEncoder.Save(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg); //saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    using (FileStream stream = new FileStream(saveDialog.FileName, FileMode.Create))
-                        jpegBitmapEncoder.Save(stream);
+                    Saves.SaveImage(filteredImage);
+                }
+                catch (FilteredlImageDontExistException exception)
+                {
+                    MessageBox.Show(exception.Message);
                 }
             }
-            /*private void saveImage_Click(object sender, RoutedEventArgs e)
-            { 
-                if(filteredImage != null)
-                {
-                   var filteredImageBMP = new BmpImage();
-                    var saveDialog = new SaveFileDialog();
-                    saveDialog.Title = "Сохранить картинку как...";
-                    //отображать ли предупреждение, если пользователь указывает имя уже существующего файла
-                    saveDialog.OverwritePrompt = true;
-                    //отображать ли предупреждение, если пользователь указывает несуществующий путь
-                    saveDialog.CheckPathExists = true;
-                    //список форматов файла, отображаемый в поле "Тип файла"
-                    saveDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG)|*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG|All files (*.*)|*.*";
-                    if (saveDialog.ShowDialog() == true)
-                    {
-                        try
-                        {
-                            filteredImage.Save(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
-                        }
-                        catch
-                        {
-                            MessageBox.Show("Невозможно сохранить изображение", "Ошибка",
-                           MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
-            }*/
-
         }
 }
 
