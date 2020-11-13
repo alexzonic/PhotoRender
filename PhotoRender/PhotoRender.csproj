@@ -58,6 +58,7 @@
     <Compile Include="Filteres\Blur.cs" />
     <Compile Include="Filteres\Convolution.cs" />
     <Compile Include="Filteres\Negativity.cs" />
+    <Compile Include="Filteres\Relief.cs" />
     <Compile Include="Saves.cs" />
     <Page Include="BalanceSlider.xaml" />
     <Page Include="MainWindow.xaml">
