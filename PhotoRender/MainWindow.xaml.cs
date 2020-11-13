@@ -123,6 +123,21 @@ namespace PhotoRender
                 }
             }
             
+            private void BorderHighlight_Click(object sender, RoutedEventArgs e)
+            {
+                try
+                {
+                    BmpImage = ImageToBitmap(originalImage);
+                    Pixels = BitmapPixels(BmpImage);
+                    FilteredImage = filteredImage;
+                    BorderHighlight.Filter(); 
+                }
+                catch (OriginalImageDontExistException exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+            }
+            
             private void Bright_Click(object sender, RoutedEventArgs e)
             {
                 try
