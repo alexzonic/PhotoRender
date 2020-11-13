@@ -1,10 +1,10 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using PhotoRender.Filteres;
 using PhotoRender.AstridExceptions;
+using static PhotoRender.Filteres.Palette;
 
 namespace PhotoRender
 {
@@ -69,17 +69,19 @@ namespace PhotoRender
                     var filtredPixels = Negativ.NegativFiltred(originalImage);
                     filteredImage.Source = AstridBitmap.GetBitmapSource(filtredPixels);
                 }
-                catch (AstridExceptions.OriginalImageDontExistException exception)
+                catch (OriginalImageDontExistException exception)
                 {
                     MessageBox.Show(exception.Message);
                 }
-        }
+            }
             private void Bright_Click(object sender, RoutedEventArgs e)
             {
                 try
                 {
-                    var bitmap = AstridBitmap.ImageToBitmap(originalImage);
-                    var slider = new AstridSlider(filteredImage, bitmap);
+                    BmpImage = AstridBitmap.ImageToBitmap(originalImage);
+                    Pixels = BitmapPixels(BmpImage);
+                    FilteredImage = filteredImage;
+                    var slider = new AstridSlider();
                     slider.Show();
                 }
                 catch (OriginalImageDontExistException exception)
@@ -88,62 +90,39 @@ namespace PhotoRender
                 }
             }
 
-            private void saveImage_Click(object sender, RoutedEventArgs e)
+            private void Balance_Click(object sender, RoutedEventArgs e)
             {
-
-                var saveDialog = new SaveFileDialog();
-                saveDialog.Title = "Сохранить картинку как...";
-                //отображать ли предупреждение, если пользователь указывает имя уже существующего файла
-                saveDialog.OverwritePrompt = true;
-                //отображать ли предупреждение, если пользователь указывает несуществующий путь
-                saveDialog.CheckPathExists = true;
-                //список форматов файла, отображаемый в поле "Тип файла"
-                saveDialog.Filter =
-                    "Image Files(*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG)|*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG|All files (*.*)|*.*";
-                saveDialog.InitialDirectory = @"c:\temp\"; //каталог по умолчанию
-                if (saveDialog.ShowDialog() == true)
+                try
                 {
-                    var jpegBitmapEncoder = new JpegBitmapEncoder();
-                    jpegBitmapEncoder.Frames.Add(BitmapFrame.Create(filteredImage.Source as BitmapSource));
-                    //jpegBitmapEncoder.Save(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg); //saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    using (FileStream stream = new FileStream(saveDialog.FileName, FileMode.Create))
-                        jpegBitmapEncoder.Save(stream);
+                    BmpImage = AstridBitmap.ImageToBitmap(originalImage);
+                    Pixels = BitmapPixels(BmpImage);
+                    FilteredImage = filteredImage;
+                    var slider = new BalanceSlider();
+                    slider.Show();
+                }
+                catch (OriginalImageDontExistException exception)
+                {
+                    MessageBox.Show(exception.Message);
                 }
             }
-            /*private void saveImage_Click(object sender, RoutedEventArgs e)
-            { 
-                if(filteredImage != null)
+            
+            private void SaveImage_Click(object sender, RoutedEventArgs e)
+            {
+                try
                 {
-                   var filteredImageBMP = new BitmapImage();
-                    var saveDialog = new SaveFileDialog();
-                    saveDialog.Title = "Сохранить картинку как...";
-                    //отображать ли предупреждение, если пользователь указывает имя уже существующего файла
-                    saveDialog.OverwritePrompt = true;
-                    //отображать ли предупреждение, если пользователь указывает несуществующий путь
-                    saveDialog.CheckPathExists = true;
-                    //список форматов файла, отображаемый в поле "Тип файла"
-                    saveDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG)|*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG|All files (*.*)|*.*";
-                    if (saveDialog.ShowDialog() == true)
-                    {
-                        try
-                        {
-                            filteredImage.Save(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
-                        }
-                        catch
-                        {
-                            MessageBox.Show("Невозможно сохранить изображение", "Ошибка",
-                           MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+                    Saves.SaveImage(filteredImage);
                 }
-            }*/
-
+                catch (FilteredlImageDontExistException exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+            }
         }
 }
 
 
 // может пригодиится
-/*private Bitmap BitmapImage2Bitmap(BitmapImage bitmapImage)
+/*private Bitmap BitmapImage2Bitmap(BmpImage bitmapImage)
 {
     using (var str = new MemoryStream())
     {
@@ -174,7 +153,7 @@ namespace PhotoRender
 /*byte[] arr;
 using (var ms = new MemoryStream())
 {
-    var bmp = originalImage.Source as BitmapImage;
+    var bmp = originalImage.FilteredImage as BmpImage;
     JpegBitmapEncoder enc = new JpegBitmapEncoder();
     enc.Frames.Add(BitmapFrame.Create(bmp));
     enc.Save(ms);
@@ -184,11 +163,11 @@ using (var ms = new MemoryStream())
 
 /*
          // надо затестить p.s. нихуя не работает
-        private BitmapImage GetLink(BitmapSource source)
+        private BmpImage GetLink(BitmapSource source)
         {
             JpegBitmapEncoder encoder = new JpegBitmapEncoder();
             MemoryStream memoryStream = new MemoryStream();
-            BitmapImage bImg = new BitmapImage();
+            BmpImage bImg = new BmpImage();
 
             encoder.Frames.Add(BitmapFrame.Create(source));
             encoder.Save(memoryStream);
@@ -221,21 +200,21 @@ using (var ms = new MemoryStream())
 
 /*using (ms)
 {
-    BitmapImage bi = new BitmapImage();
+    BmpImage bi = new BmpImage();
     bi.BeginInit();
     bi.StreamSource = ms;
     bi.EndInit();
 
-    filteredImage.Source = bi;
+    filteredImage.FilteredImage = bi;
 }*/
 /*
-            var res = new BitmapImage();
+            var res = new BmpImage();
             res.BeginInit();
             ms.Seek(0, SeekOrigin.Begin);
             res.StreamSource = ms;
             res.EndInit();
 
-            filteredImage.Source = res;*/
+            filteredImage.FilteredImage = res;*/
 
 //var qqq = GrayScale.ToGrayscale(pixels);
 /*
@@ -253,10 +232,10 @@ using (var ms = new MemoryStream())
 
 //Convert.ToBitmap(pixels).Save(new MemoryStream(), System.Drawing.Imaging.ImageFormat.Jpeg);
 
-/*            BitmapImage res = new BitmapImage();
+/*            BmpImage res = new BmpImage();
             res.BeginInit();
-            res.UriSource = new Uri(originalImage.Source.ToString());
+            res.UriSource = new Uri(originalImage.FilteredImage.ToString());
             res.EndInit();
-            filteredImage.Source = res;*/
+            filteredImage.FilteredImage = res;*/
 
-//filteredImage.Source = BitmapFrame.Create(new MemoryStream(pixels), BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+//filteredImage.FilteredImage = BitmapFrame.Create(new MemoryStream(pixels), BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
