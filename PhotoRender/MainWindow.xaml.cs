@@ -13,207 +13,213 @@ namespace PhotoRender
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow
+    {
+            
+        public MainWindow()
         {
-            
-            public MainWindow()
-            {
-                InitializeComponent();
-            }
+            InitializeComponent();
+        }
 
-            private void loadImage_Click(object sender, RoutedEventArgs e)
+        private void loadImage_Click(object sender, RoutedEventArgs e)
+        {
+            var dlg = new OpenFileDialog
             {
-                var dlg = new OpenFileDialog
-                {
-                    FileName = "",
-                    Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG)|*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG|All files (*.*)|*.*"
-                };
+                FileName = "",
+                Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG)|*.BMP;*.JPG;*.GIF;*.PNG;*.JPEG|All files (*.*)|*.*"
+            };
 
-                if (dlg.ShowDialog() == true)
-                {
-                    originalImage.Source = new BitmapImage(new Uri(dlg.FileName));
-                    filteredImage.Source = null;
-                    OriginalImage = originalImage.Source;
-                }
+            if (dlg.ShowDialog() == true)
+            {
+                originalImage.Source = new BitmapImage(new Uri(dlg.FileName));
+                filteredImage.Source = null;
+                OriginalImage = originalImage.Source;
             }
+        }
 
-            private void Grayscale_Click(object sender, RoutedEventArgs e)
+        private void Grayscale_Click(object sender, RoutedEventArgs e)
+        {
+            try
             {
-                try
-                {
-                    var bitmap = GrayScale.ToGrayscale(originalImage);
+                var bitmap = GrayScale.ToGrayscale(originalImage);
 
-                    filteredImage.Source = GetBitmapSource(bitmap);
-                }
-                catch (OriginalImageDontExistException exception)
-                {
-                    MessageBox.Show(exception.Message);
-                }
+                filteredImage.Source = GetBitmapSource(bitmap);
             }
+            catch (OriginalImageDontExistException exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
 
-            private void SobelFilter_Click(object sender, RoutedEventArgs e)
+        private void SobelFilter_Click(object sender, RoutedEventArgs e)
+        {
+            try
             {
-                try
-                {
-                    var bitmap = SobelFilter.ToSobelFilter(originalImage);
+                var bitmap = SobelFilter.ToSobelFilter(originalImage);
 
-                    filteredImage.Source = GetBitmapSource(bitmap);
-                }
-                catch (OriginalImageDontExistException exception)
-                {
-                    MessageBox.Show(exception.Message);
-                }
+                filteredImage.Source = GetBitmapSource(bitmap);
             }
+            catch (OriginalImageDontExistException exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
 
-            private void Sharpness_Click(object sender, RoutedEventArgs e)
+        private void Sharpness_Click(object sender, RoutedEventArgs e)
+        {
+            try
             {
-                try
-                {
-                    if (filteredImage.Source == null)
-                    {
-                        BmpImage = ImageToBitmap(originalImage);
-                        Pixels = BitmapPixels(BmpImage);
-                        FilteredImage = filteredImage;
-                    }
-                    Sharpness.Filter();
-                }
-                catch (OriginalImageDontExistException exception)
-                {
-                    MessageBox.Show(exception.Message);
-                }
-            }
-            
-            private void Blur_Click(object sender, RoutedEventArgs e)
-            {
-                try
-                {
-                    if (filteredImage.Source == null)
-                    {
-                        BmpImage = ImageToBitmap(originalImage);
-                        Pixels = BitmapPixels(BmpImage);
-                        FilteredImage = filteredImage;
-                    }
-                    Blur.Filter(); 
-                }
-                catch (OriginalImageDontExistException exception)
-                {
-                    MessageBox.Show(exception.Message);
-                }
-            }
-            
-            private void Negativity_Click(object sender, RoutedEventArgs e)
-            {
-                try
-                {
-                    if (filteredImage.Source == null)
-                    {
-                        BmpImage = ImageToBitmap(originalImage);
-                        Pixels = BitmapPixels(BmpImage);
-                        FilteredImage = filteredImage;
-                    }
-                    Negativity.Filter(); 
-                }
-                catch (OriginalImageDontExistException exception)
-                {
-                    MessageBox.Show(exception.Message);
-                }
-            }
-            
-            private void Relief_Click(object sender, RoutedEventArgs e)
-            {
-                try
-                {
-                    if (filteredImage.Source == null)
-                    {
-                        BmpImage = ImageToBitmap(originalImage);
-                        Pixels = BitmapPixels(BmpImage);
-                        FilteredImage = filteredImage;
-                    }
-                    Relief.Filter(); 
-                }
-                catch (OriginalImageDontExistException exception)
-                {
-                    MessageBox.Show(exception.Message);
-                }
-            }
-            
-            private void BorderHighlight_Click(object sender, RoutedEventArgs e)
-            {
-                try
-                {
-                    if (filteredImage.Source == null)
-                    {
-                        BmpImage = ImageToBitmap(originalImage);
-                        Pixels = BitmapPixels(BmpImage);
-                        FilteredImage = filteredImage;
-                    }
-                    BorderHighlight.Filter(); 
-                }
-                catch (OriginalImageDontExistException exception)
-                {
-                    MessageBox.Show(exception.Message);
-                }
-            }
-            
-            private void Bright_Click(object sender, RoutedEventArgs e)
-            {
-                try
-                {
-                    if (filteredImage.Source == null)
-                    {
-                        BmpImage = ImageToBitmap(originalImage);
-                        Pixels = BitmapPixels(BmpImage);
-                        FilteredImage = filteredImage;
-                    }
-                    var slider = new AstridSlider();
-                    slider.Show();
-                }
-                catch (OriginalImageDontExistException exception)
-                {
-                    MessageBox.Show(exception.Message);
-                }
-            }
-
-            private void Balance_Click(object sender, RoutedEventArgs e)
-            {
-                try
-                {
-                    if (filteredImage.Source == null)
-                    {
-                        BmpImage = ImageToBitmap(originalImage);
-                        Pixels = BitmapPixels(BmpImage);
-                        FilteredImage = filteredImage;
-                    }
-                    var slider = new BalanceSlider();
-                    slider.Show();
-                }
-                catch (OriginalImageDontExistException exception)
-                {
-                    MessageBox.Show(exception.Message);
-                }
-            }
-            
-            private void SaveImage_Click(object sender, RoutedEventArgs e)
-            {
-                try
-                {
-                    Saves.SaveImage(filteredImage);
-                }
-                catch (FilteredlImageDontExistException exception)
-                {
-                    MessageBox.Show(exception.Message);
-                }
-            }
-            
-            private void Reboot_Click(object sender, RoutedEventArgs e)
-            {
-                if (originalImage.Source != null)
+                if (filteredImage.Source == null)
                 {
                     BmpImage = ImageToBitmap(originalImage);
                     Pixels = BitmapPixels(BmpImage);
-                    FilteredImage.Source = originalImage.Source;
+                    FilteredImage = filteredImage;
                 }
+                Sharpness.Filter();
+            }
+            catch (OriginalImageDontExistException exception)
+            {
+                MessageBox.Show(exception.Message);
             }
         }
+            
+        private void Blur_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (filteredImage.Source == null)
+                {
+                    BmpImage = ImageToBitmap(originalImage);
+                    Pixels = BitmapPixels(BmpImage);
+                    FilteredImage = filteredImage;
+                }
+                Blur.Filter(); 
+            }
+            catch (OriginalImageDontExistException exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+            
+        private void Negativity_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (filteredImage.Source == null)
+                {
+                    BmpImage = ImageToBitmap(originalImage);
+                    Pixels = BitmapPixels(BmpImage);
+                    FilteredImage = filteredImage;
+                }
+                Negativity.Filter(); 
+            }
+            catch (OriginalImageDontExistException exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+            
+        private void Relief_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (filteredImage.Source == null)
+                {
+                    BmpImage = ImageToBitmap(originalImage);
+                    Pixels = BitmapPixels(BmpImage);
+                    FilteredImage = filteredImage;
+                }
+                Relief.Filter(); 
+            }
+            catch (OriginalImageDontExistException exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+            
+        private void BorderHighlight_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (filteredImage.Source == null)
+                {
+                    BmpImage = ImageToBitmap(originalImage);
+                    Pixels = BitmapPixels(BmpImage);
+                    FilteredImage = filteredImage;
+                }
+                BorderHighlight.Filter(); 
+            }
+            catch (OriginalImageDontExistException exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+            
+        private void Bright_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (filteredImage.Source == null)
+                {
+                    BmpImage = ImageToBitmap(originalImage);
+                    Pixels = BitmapPixels(BmpImage);
+                    FilteredImage = filteredImage;
+                }
+                var slider = new AstridSlider();
+                slider.Show();
+            }
+            catch (OriginalImageDontExistException exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void Balance_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (filteredImage.Source == null)
+                {
+                    BmpImage = ImageToBitmap(originalImage);
+                    Pixels = BitmapPixels(BmpImage);
+                    FilteredImage = filteredImage;
+                }
+                var slider = new BalanceSlider();
+                slider.Show();
+            }
+            catch (OriginalImageDontExistException exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+            
+        private void SaveImage_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Saves.SaveImage(filteredImage);
+            }
+            catch (FilteredlImageDontExistException exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+            
+        private void Reboot_Click(object sender, RoutedEventArgs e)
+        {
+            if (originalImage.Source != null)
+            {
+                BmpImage = ImageToBitmap(originalImage);
+                Pixels = BitmapPixels(BmpImage);
+                FilteredImage.Source = originalImage.Source;
+            }
+        }
+            
+        private void QWE_Click(object sender, RoutedEventArgs e)
+        {
+            NewWindow qwe = new NewWindow();
+            qwe.Show();
+        }
+    }
 }
 
 

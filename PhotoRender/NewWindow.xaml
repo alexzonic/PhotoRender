@@ -12,7 +12,21 @@
                 <RowDefinition Height="30*"/>
                 <RowDefinition Height="470*"/>
             </Grid.RowDefinitions>
+            <Menu Grid.Row="0" Background="#282728">
+                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
+                        Content="Открыть" MinWidth="60" MinHeight="30" 
+                        Margin="-7, 0, -6,0" Cursor="Hand" Click="LoadImage_Click" 
+                        />
+                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
+                        Content="Сохранить как..." MinWidth="60" MinHeight="30" 
+                        Margin="-7, 0, -6,0" Cursor="Hand" Click="SaveImage_Click" 
+                        />
+            </Menu>
+            <Grid Grid.Row="1" Background="#2d292d">
+                <Image x:Name="image" />
+            </Grid>
         </Grid>
+        
         <Grid Margin="560,0,-0.4,0.4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30*"/>
@@ -20,5 +34,6 @@
                 <RowDefinition Height="20*"/>
             </Grid.RowDefinitions>
         </Grid>
+        
     </Grid>
 </Window>

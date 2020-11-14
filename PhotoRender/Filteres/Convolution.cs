@@ -6,7 +6,7 @@ namespace PhotoRender.Filteres
     {
         private static double[,] _sx = { { 0, 0, 0 }, { 0, 1, 0 }, { 0, 0, 0 } };
         private static int Gap = 1;
-
+        // { 1, 1, 0 }, { 1, 1, 0 }, { 0, 0, 0 }
         protected static uint[,] KernelMatrix(int width, int height, double[,] sx)
         {
             _sx = sx;

@@ -24,6 +24,7 @@
                 <Button Content="Эффект 'подсветка границ'" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="BorderHighlight_Click"/>
                 <Button Content="Яркость/контрастность" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Bright_Click"/>
                 <Button Content="Баланс цветов" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Balance_Click"/>
+                <Button Content="окно" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="QWE_Click"/>
             </MenuItem>
             <Button x:Name="SaveImage" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Сохранить как" MinHeight="30" MinWidth="100" Margin="-7, 0, -6,0" Cursor="Hand" Click="SaveImage_Click"/>
             <Button x:Name="Reboot" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Сбросить" MinHeight="30" MinWidth="100" Margin="-7, 0, -6,0" Cursor="Hand" Click="Reboot_Click"/>
