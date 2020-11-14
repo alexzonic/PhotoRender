@@ -5,8 +5,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:PhotoRender"
         mc:Ignorable="d"
-        Title="NewWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="NewWindow" Height="500" Width="800">
+    <Grid ShowGridLines="True">
+        <Grid Margin="0,0,233.6,0.4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="470*"/>
+            </Grid.RowDefinitions>
+        </Grid>
+        <Grid Margin="560,0,-0.4,0.4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="450*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+        </Grid>
     </Grid>
 </Window>
