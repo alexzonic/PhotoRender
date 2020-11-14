@@ -52,8 +52,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AstridSlider.xaml.cs">
-      <DependentUpon>AstridSlider.xaml</DependentUpon>
+    <Compile Include="BrightContSlider.xaml.cs">
+      <DependentUpon>BrightContSlider.xaml</DependentUpon>
     </Compile>
     <Compile Include="Filteres\Blur.cs" />
     <Compile Include="Filteres\BorderHighlight.cs" />
@@ -85,7 +85,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="AstridSlider.xaml" />
+    <Page Include="BrightContSlider.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pixel.cs" />

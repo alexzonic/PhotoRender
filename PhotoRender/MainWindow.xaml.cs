@@ -5,6 +5,7 @@ using System.Windows.Media.Imaging;
 using PhotoRender.Filteres;
 using PhotoRender.AstridExceptions;
 using static PhotoRender.AstridBitmap;
+using static PhotoRender.Filteres.Convolution;
 using static PhotoRender.Filteres.Palette;
 
 namespace PhotoRender
@@ -70,9 +71,8 @@ namespace PhotoRender
                 {
                     if (filteredImage.Source == null)
                     {
-                        BmpImage = ImageToBitmap(originalImage);
-                        Pixels = BitmapPixels(BmpImage);
-                        FilteredImage = filteredImage;
+                        FillStaticProperties(originalImage, filteredImage);
+                        Matrix = KernelMatrix(BmpImage.Width, BmpImage.Height);
                     }
                     Sharpness.Filter();
                 }
@@ -88,9 +88,8 @@ namespace PhotoRender
                 {
                     if (filteredImage.Source == null)
                     {
-                        BmpImage = ImageToBitmap(originalImage);
-                        Pixels = BitmapPixels(BmpImage);
-                        FilteredImage = filteredImage;
+                        FillStaticProperties(originalImage, filteredImage);
+                        Matrix = KernelMatrix(BmpImage.Width, BmpImage.Height);
                     }
                     Blur.Filter(); 
                 }
@@ -106,9 +105,8 @@ namespace PhotoRender
                 {
                     if (filteredImage.Source == null)
                     {
-                        BmpImage = ImageToBitmap(originalImage);
-                        Pixels = BitmapPixels(BmpImage);
-                        FilteredImage = filteredImage;
+                        FillStaticProperties(originalImage, filteredImage);
+                        Matrix = KernelMatrix(BmpImage.Width, BmpImage.Height);
                     }
                     Negativity.Filter(); 
                 }
@@ -124,9 +122,8 @@ namespace PhotoRender
                 {
                     if (filteredImage.Source == null)
                     {
-                        BmpImage = ImageToBitmap(originalImage);
-                        Pixels = BitmapPixels(BmpImage);
-                        FilteredImage = filteredImage;
+                        FillStaticProperties(originalImage, filteredImage);
+                        Matrix = KernelMatrix(BmpImage.Width, BmpImage.Height);
                     }
                     Relief.Filter(); 
                 }
@@ -142,9 +139,8 @@ namespace PhotoRender
                 {
                     if (filteredImage.Source == null)
                     {
-                        BmpImage = ImageToBitmap(originalImage);
-                        Pixels = BitmapPixels(BmpImage);
-                        FilteredImage = filteredImage;
+                        FillStaticProperties(originalImage, filteredImage);
+                        Matrix = KernelMatrix(BmpImage.Width, BmpImage.Height);
                     }
                     BorderHighlight.Filter(); 
                 }
@@ -159,12 +155,8 @@ namespace PhotoRender
                 try
                 {
                     if (filteredImage.Source == null)
-                    {
-                        BmpImage = ImageToBitmap(originalImage);
-                        Pixels = BitmapPixels(BmpImage);
-                        FilteredImage = filteredImage;
-                    }
-                    var slider = new AstridSlider();
+                        FillStaticProperties(originalImage, filteredImage);
+                    var slider = new BrightContSlider();
                     slider.Show();
                 }
                 catch (OriginalImageDontExistException exception)
@@ -178,11 +170,7 @@ namespace PhotoRender
                 try
                 {
                     if (filteredImage.Source == null)
-                    {
-                        BmpImage = ImageToBitmap(originalImage);
-                        Pixels = BitmapPixels(BmpImage);
-                        FilteredImage = filteredImage;
-                    }
+                        FillStaticProperties(originalImage, filteredImage);
                     var slider = new BalanceSlider();
                     slider.Show();
                 }
@@ -202,6 +190,12 @@ namespace PhotoRender
                 {
                     MessageBox.Show(exception.Message);
                 }
+            }
+
+            private void SaveChange_Click(object sender, RoutedEventArgs e)
+            {
+                BmpImage = SetPixelsInBitmap(Pixels, BmpImage);
+                Pixels = BitmapPixels(BmpImage);
             }
             
             private void Reboot_Click(object sender, RoutedEventArgs e)

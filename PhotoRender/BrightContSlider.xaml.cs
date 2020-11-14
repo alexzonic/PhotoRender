@@ -5,9 +5,9 @@ using PhotoRender.Filteres;
 
 namespace PhotoRender
 {
-    public partial class AstridSlider
+    public partial class BrightContSlider
     {
-        public AstridSlider()
+        public BrightContSlider()
         {
             InitializeComponent();
         }

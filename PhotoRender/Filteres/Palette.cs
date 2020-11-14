@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Color = System.Drawing.Color;
+using Image = System.Windows.Controls.Image;
 
 namespace PhotoRender.Filteres
 {
@@ -13,7 +14,7 @@ namespace PhotoRender.Filteres
         private static float _blue;
         public static uint[,] Pixels { get; set; }
         public static Bitmap BmpImage { get; set; }
-        public static System.Windows.Controls.Image FilteredImage { get; set; }
+        public static Image FilteredImage { get; set; }
         public static ImageSource OriginalImage { get; set; }
 
         protected static float Red
@@ -70,6 +71,13 @@ namespace PhotoRender.Filteres
             var g = (float)(coefficient * ((pixel & 0x0000FF00) >> 8));
             var b = (float)(coefficient * (pixel & 0x000000FF));
             return (r, g, b);
+        }
+
+        public static void FillStaticProperties(Image originImage, Image filterImage)
+        {
+            BmpImage = AstridBitmap.ImageToBitmap(originImage);
+            Pixels = BitmapPixels(BmpImage);
+            FilteredImage = filterImage;
         } 
     }
 }

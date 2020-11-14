@@ -27,6 +27,7 @@
             </MenuItem>
             <Button x:Name="SaveImage" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Сохранить как" MinHeight="30" MinWidth="100" Margin="-7, 0, -6,0" Cursor="Hand" Click="SaveImage_Click"/>
             <Button x:Name="Reboot" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Сбросить" MinHeight="30" MinWidth="100" Margin="-7, 0, -6,0" Cursor="Hand" Click="Reboot_Click"/>
+            <Button x:Name="Save" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Применить" MinHeight="30" MinWidth="100" Margin="-7, 0, -6,0" Cursor="Hand" Click="SaveChange_Click"/>
         </Menu>
         <Grid ShowGridLines="True" Grid.Row="1">
             <Grid.ColumnDefinitions>
