@@ -60,6 +60,9 @@
     <Compile Include="Filteres\Convolution.cs" />
     <Compile Include="Filteres\Negativity.cs" />
     <Compile Include="Filteres\Relief.cs" />
+    <Compile Include="NewWindow.xaml.cs">
+      <DependentUpon>NewWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Saves.cs" />
     <Page Include="BalanceSlider.xaml" />
     <Page Include="MainWindow.xaml">
@@ -86,6 +89,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="AstridSlider.xaml" />
+    <Page Include="NewWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pixel.cs" />
