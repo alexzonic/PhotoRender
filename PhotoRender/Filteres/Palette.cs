@@ -1,34 +1,37 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Controls;
+using System.Windows.Media;
+using Color = System.Drawing.Color;
 
 namespace PhotoRender.Filteres
 {
     public class Palette
     {
-        private static float red;
-        private static float green;
-        private static float blue;
+        private static float _red;
+        private static float _green;
+        private static float _blue;
         public static uint[,] Pixels { get; set; }
         public static Bitmap BmpImage { get; set; }
         public static System.Windows.Controls.Image FilteredImage { get; set; }
+        public static ImageSource OriginalImage { get; set; }
 
         protected static float Red
         {
-            get => red;
-            set => red = GetTrueValue(value);
+            get => _red;
+            set => _red = GetTrueValue(value);
         }
 
         protected static float Green
         {
-            get => green;
-            set => green = GetTrueValue(value);
+            get => _green;
+            set => _green = GetTrueValue(value);
         }
 
         protected static float Blue
         {
-            get => blue;
-            set => blue = GetTrueValue(value);
+            get => _blue;
+            set => _blue = GetTrueValue(value);
         }
 
         protected static void ChangePixelsColor(Slider slider, Func<uint, int, int, uint> change)
