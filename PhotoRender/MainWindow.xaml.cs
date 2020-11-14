@@ -32,6 +32,7 @@ namespace PhotoRender
                 {
                     originalImage.Source = new BitmapImage(new Uri(dlg.FileName));
                     filteredImage.Source = null;
+                    OriginalImage = originalImage.Source;
                 }
             }
 
@@ -67,9 +68,12 @@ namespace PhotoRender
             {
                 try
                 {
-                    BmpImage = ImageToBitmap(originalImage);
-                    Pixels = BitmapPixels(BmpImage);
-                    FilteredImage = filteredImage;
+                    if (filteredImage.Source == null)
+                    {
+                        BmpImage = ImageToBitmap(originalImage);
+                        Pixels = BitmapPixels(BmpImage);
+                        FilteredImage = filteredImage;
+                    }
                     Sharpness.Filter();
                 }
                 catch (OriginalImageDontExistException exception)
@@ -82,9 +86,12 @@ namespace PhotoRender
             {
                 try
                 {
-                    BmpImage = ImageToBitmap(originalImage);
-                    Pixels = BitmapPixels(BmpImage);
-                    FilteredImage = filteredImage;
+                    if (filteredImage.Source == null)
+                    {
+                        BmpImage = ImageToBitmap(originalImage);
+                        Pixels = BitmapPixels(BmpImage);
+                        FilteredImage = filteredImage;
+                    }
                     Blur.Filter(); 
                 }
                 catch (OriginalImageDontExistException exception)
@@ -97,9 +104,12 @@ namespace PhotoRender
             {
                 try
                 {
-                    BmpImage = ImageToBitmap(originalImage);
-                    Pixels = BitmapPixels(BmpImage);
-                    FilteredImage = filteredImage;
+                    if (filteredImage.Source == null)
+                    {
+                        BmpImage = ImageToBitmap(originalImage);
+                        Pixels = BitmapPixels(BmpImage);
+                        FilteredImage = filteredImage;
+                    }
                     Negativity.Filter(); 
                 }
                 catch (OriginalImageDontExistException exception)
@@ -112,9 +122,12 @@ namespace PhotoRender
             {
                 try
                 {
-                    BmpImage = ImageToBitmap(originalImage);
-                    Pixels = BitmapPixels(BmpImage);
-                    FilteredImage = filteredImage;
+                    if (filteredImage.Source == null)
+                    {
+                        BmpImage = ImageToBitmap(originalImage);
+                        Pixels = BitmapPixels(BmpImage);
+                        FilteredImage = filteredImage;
+                    }
                     Relief.Filter(); 
                 }
                 catch (OriginalImageDontExistException exception)
@@ -127,9 +140,12 @@ namespace PhotoRender
             {
                 try
                 {
-                    BmpImage = ImageToBitmap(originalImage);
-                    Pixels = BitmapPixels(BmpImage);
-                    FilteredImage = filteredImage;
+                    if (filteredImage.Source == null)
+                    {
+                        BmpImage = ImageToBitmap(originalImage);
+                        Pixels = BitmapPixels(BmpImage);
+                        FilteredImage = filteredImage;
+                    }
                     BorderHighlight.Filter(); 
                 }
                 catch (OriginalImageDontExistException exception)
@@ -142,9 +158,12 @@ namespace PhotoRender
             {
                 try
                 {
-                    BmpImage = ImageToBitmap(originalImage);
-                    Pixels = BitmapPixels(BmpImage);
-                    FilteredImage = filteredImage;
+                    if (filteredImage.Source == null)
+                    {
+                        BmpImage = ImageToBitmap(originalImage);
+                        Pixels = BitmapPixels(BmpImage);
+                        FilteredImage = filteredImage;
+                    }
                     var slider = new AstridSlider();
                     slider.Show();
                 }
@@ -158,9 +177,12 @@ namespace PhotoRender
             {
                 try
                 {
-                    BmpImage = ImageToBitmap(originalImage);
-                    Pixels = BitmapPixels(BmpImage);
-                    FilteredImage = filteredImage;
+                    if (filteredImage.Source == null)
+                    {
+                        BmpImage = ImageToBitmap(originalImage);
+                        Pixels = BitmapPixels(BmpImage);
+                        FilteredImage = filteredImage;
+                    }
                     var slider = new BalanceSlider();
                     slider.Show();
                 }
@@ -179,6 +201,16 @@ namespace PhotoRender
                 catch (FilteredlImageDontExistException exception)
                 {
                     MessageBox.Show(exception.Message);
+                }
+            }
+            
+            private void Reboot_Click(object sender, RoutedEventArgs e)
+            {
+                if (originalImage.Source != null)
+                {
+                    BmpImage = ImageToBitmap(originalImage);
+                    Pixels = BitmapPixels(BmpImage);
+                    FilteredImage.Source = originalImage.Source;
                 }
             }
         }
