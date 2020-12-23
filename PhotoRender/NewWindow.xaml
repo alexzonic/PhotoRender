@@ -7,46 +7,30 @@
         mc:Ignorable="d"
         Title="NewWindow" Height="500" Width="800">
     <Grid ShowGridLines="True">
-        <Grid ShowGridLines="True" Margin="0,0,245,0.4">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30*"/>
-                <RowDefinition Height="470*"/>
-            </Grid.RowDefinitions>
-            <Menu Grid.Row="0" Background="#282728">
-                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
-                        Content="Открыть" MinWidth="60" MinHeight="30" 
-                        Margin="-7, 0, -6,0" Cursor="Hand" Click="LoadImage_Click" 
-                />
-                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
-                        Content="Сохранить как..." MinWidth="60" MinHeight="30" 
-                        Margin="-7, 0, -6,0" Cursor="Hand" Click="SaveImage_Click" 
-                />
-            </Menu>
-            <Grid Grid.Row="1" Background="#2d292d">
-                <Image x:Name="image" />
-            </Grid>
-        </Grid>
-        <Grid ShowGridLines="True" Margin="549,0,-0.4,0.4">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="30"/>
-            </Grid.RowDefinitions>
-            <Button Content="Button" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="122"/>
-            <Button Content="Button" HorizontalAlignment="Right" Height="30"  VerticalAlignment="Top" Width="123"/>
-            <ListBox Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,0.6,0,0.8">
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid Rows="6" Columns="2" Height="406"/>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-            </ListBox>
-            <Menu Grid.Row="2">
-                <Button Content="Button" Height="30" Width="81.6" Margin="-6,0,-8,0"/>
-                <Button Content="Button" Height="30" Width="81.6" Margin="-6,0,-8,0"/>
-                <Button Content="Button" Height="30" Width="81.6" Margin="-6,0,-8,0"/>
-            </Menu>
 
-        </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="270px"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="30px"/>
+            <RowDefinition Height="470*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Column="0" Grid.Row="0" Background="#282728">
+            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="-7, 0, -6,0" Height="30px" MinWidth="60px" Content="Открыть" Cursor="Hand" Click="LoadImage_Click"/>
+            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="-7, 0, -6,0" Height="30px" MinWidth="60px" Content="Сохранить как..."></Button>
+        </Menu>
+        <DockPanel Grid.Column="1" Grid.Row="0">
+            <Button DockPanel.Dock="Left" Width="90.5px"></Button>
+            <Button Width="90.5px"></Button>
+            <Button DockPanel.Dock="Right" Width="90.5px"></Button>
+        </DockPanel>
+        <GroupBox Grid.Row="1" Grid.Column="1">
+            <ScrollViewer>
+                
+            </ScrollViewer>
+        </GroupBox>
+
     </Grid>
 </Window>
